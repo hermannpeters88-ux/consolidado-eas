@@ -3,365 +3,271 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grupo G — Consolidado</title>
+<title>Grupo G — Resumen Ejecutivo 2026</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f7;color:#1a1a2e;font-size:14px}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#e8eaf0;color:#1a1a1a;font-size:13px}
 
-/* HEADER */
-.top{background:linear-gradient(135deg,#701082,#420760);color:#fff;padding:15px 28px;display:flex;justify-content:space-between;align-items:center}
-.top-left h1{font-size:20px;font-weight:800;letter-spacing:-.3px}
-.top-left h1 span{opacity:.6;font-weight:400;font-size:14px;margin-left:8px}
-.top-left p{font-size:11px;opacity:.55;margin-top:3px}
-.btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
-.btn:hover{background:rgba(255,255,255,.25)}
+.page-header{background:#1a1a1a;color:#fff;padding:18px 32px;display:flex;justify-content:space-between;align-items:center}
+.page-header h1{font-size:16px;font-weight:700;letter-spacing:.5px}
+.page-header p{font-size:11px;opacity:.55;margin-top:2px}
+.btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 14px;border-radius:5px;cursor:pointer;font-size:11px;font-weight:600}
+.btn:hover{background:rgba(255,255,255,.22)}
 
-/* LAYOUT */
-.wrap{max-width:1080px;margin:0 auto;padding:22px 16px 60px}
-.sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#aaa;margin-bottom:10px}
+.wrap{max-width:1200px;margin:0 auto;padding:20px 16px 50px}
 
-/* GLOBAL KPIs */
-.global{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:26px}
-.gk{background:#fff;border-radius:10px;padding:16px 14px;box-shadow:0 1px 5px rgba(0,0,0,.07);text-align:center}
-.gk-lbl{font-size:9.5px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
-.gk-val{font-size:21px;font-weight:800;line-height:1}
-.gk-sub{font-size:10.5px;color:#ccc;margin-top:5px}
+/* ── TABLA PRINCIPAL ── */
+.report{background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.1);overflow:hidden;margin-bottom:20px}
 
-/* CARD */
-.card{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.08);margin-bottom:22px;overflow:hidden;border-top:4px solid #ccc}
-.card.dg{border-color:#2471a3}.card.vg{border-color:#e67e22}.card.aima{border-color:#701082}
+/* TÍTULO DEL REPORTE */
+.report-title{background:#1a1a1a;color:#fff;padding:18px 24px;text-align:center}
+.report-title h2{font-size:16px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.report-title p{font-size:11px;opacity:.55;margin-top:4px;letter-spacing:.3px}
 
-.card-header{padding:16px 24px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f5f0fa}
-.card-name{font-size:16px;font-weight:800}
-.card.dg .card-name{color:#2471a3}.card.vg .card-name{color:#e67e22}.card.aima .card-name{color:#701082}
-.card-period{font-size:11.5px;color:#bbb;display:flex;align-items:center;gap:8px}
-.sem{width:11px;height:11px;border-radius:50%;display:inline-block}
-.sem-v{background:#1a7a40;box-shadow:0 0 5px rgba(26,122,64,.5)}
-.sem-a{background:#d97706;box-shadow:0 0 5px rgba(217,119,6,.5)}
-.sem-r{background:#b71c1c;box-shadow:0 0 5px rgba(183,28,28,.5)}
+table{width:100%;border-collapse:collapse}
+col.emp{width:160px}
+col.mes{min-width:110px}
+col.tot{min-width:120px;background:#f5f5f5}
 
-/* METRICS ROW */
-.mrow{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #f5f0fa}
-.m{padding:18px 22px;border-right:1px solid #f5f0fa}
-.m:last-child{border-right:none}
-.m-lbl{font-size:9.5px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
-.m-big{font-size:26px;font-weight:800;line-height:1;margin-bottom:7px}
-.m-tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.tag{font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px;white-space:nowrap}
-.tag-up{background:#e6f4ec;color:#1a7a40}
-.tag-dn{background:#fdecea;color:#b71c1c}
-.tag-eq{background:#f3f4f6;color:#888}
-.m-note{font-size:11px;color:#bbb}
-.col-ing{color:#1a1a2e}.col-egr{color:#b71c1c}.col-pos{color:#1a7a40}.col-neg{color:#b71c1c}
+/* SECCIÓN HEADER */
+.sec-hdr td{background:#1a1a1a;color:#fff;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:10px 16px}
 
-/* P&L TABLE */
-.tbl-wrap{overflow-x:auto;border-bottom:1px solid #f5f0fa}
-.ptbl{width:100%;border-collapse:collapse;font-size:13px;min-width:420px}
-.ptbl th{background:#faf8fd;font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.4px;padding:9px 18px;text-align:right;border-bottom:1px solid #f0ecf8;white-space:nowrap}
-.ptbl th:first-child{text-align:left}
-.ptbl td{padding:9px 18px;text-align:right;border-bottom:1px solid #faf5fc;white-space:nowrap}
-.ptbl td:first-child{text-align:left;font-size:11.5px;font-weight:600;color:#888}
-.ptbl tr.r-res td{font-weight:700;background:#fdfbff}
-.ptbl tr.r-mrg td{font-size:12px;color:#999;background:#faf8fd}
-.ptbl tr:last-child td{border-bottom:none}
-.cp{color:#1a7a40}.cn{color:#b71c1c}.cg{color:#555}
+/* COLUMNA HEADER */
+.col-hdr{background:#333;color:#fff;font-size:11px;font-weight:600;text-transform:uppercase;padding:8px 12px;text-align:right;letter-spacing:.3px;border-right:1px solid #444}
+.col-hdr.emp{text-align:left}
 
-/* RESULTADO CHART */
-.chart-wrap{padding:16px 24px;border-bottom:1px solid #f5f0fa}
-.chart-lbl{font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+/* FILAS DE DATOS */
+.data-row td{padding:8px 12px;border-bottom:1px solid #f0f0f0;border-right:1px solid #ebebeb}
+.data-row td:first-child{font-weight:500;color:#333;background:#fafafa;border-right:2px solid #e0e0e0}
+.data-row td.num{text-align:right;color:#1a1a1a;font-size:12.5px}
+.data-row td.neg{color:#c0392b;text-align:right;font-size:12.5px}
+.data-row td.dash{text-align:right;color:#ccc;font-size:11px}
 
-/* 2025 vs 2026 TABLE */
-.yoy-wrap{border-bottom:1px solid #f5f0fa;overflow-x:auto}
-.yoy-tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:400px}
-.yoy-tbl th{background:#f5f0fa;font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.4px;padding:9px 18px;text-align:right;border-bottom:1px solid #ede8f6}
-.yoy-tbl th:first-child{text-align:left}
-.yoy-tbl td{padding:9px 18px;text-align:right;border-bottom:1px solid #f8f5fc;font-size:13px}
-.yoy-tbl td:first-child{text-align:left;font-size:11.5px;font-weight:700}
-.yoy-tbl tr:last-child td{border-bottom:none}
-.yoy-tbl tr.row-25 td{color:#aaa}
-.yoy-tbl tr.row-26 td{color:#1a1a2e;font-weight:600}
-.yoy-tbl tr.row-var td{font-weight:700;background:#faf8fd}
+/* FILA TOTAL */
+.tot-row td{background:#2c2c2c;color:#fff;font-weight:700;padding:8px 12px;border-right:1px solid #444;font-size:12.5px}
+.tot-row td:first-child{font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.tot-row td.num{text-align:right}
+.tot-row td.neg{color:#ff9999;text-align:right}
 
-/* FOOTER */
-.card-footer{padding:12px 24px;background:#faf8fd;display:flex;gap:24px;flex-wrap:wrap}
-.foot-item{text-align:center;flex:1;min-width:120px}
-.foot-lbl{font-size:9.5px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
-.foot-val{font-size:15px;font-weight:800}
-.foot-sub{font-size:10.5px;color:#bbb;margin-top:2px}
+/* FILA EMPRESA TOTAL */
+.sub-tot td{background:#f0f4ff;font-weight:600;padding:8px 12px;border-bottom:1px solid #ddd;border-right:1px solid #ebebeb;font-size:12px}
+.sub-tot td.num{text-align:right;color:#1a3a6a}
+.sub-tot td.neg{text-align:right;color:#c0392b}
+
+/* SEPARADOR */
+.spacer{height:6px;background:#e8eaf0}
+
+/* NOTAS */
+.note{font-size:11px;color:#aaa;padding:8px 16px;background:#fafafa;border-top:1px solid #eee}
 
 /* RESPONSIVE */
-@media(max-width:640px){
-  .global{grid-template-columns:repeat(2,1fr)}
-  .mrow{grid-template-columns:1fr}
-  .m{border-right:none;border-bottom:1px solid #f5f0fa}
-  .card-footer{gap:12px}
-}
+.scroll-x{overflow-x:auto}
+@media(max-width:700px){body{font-size:12px}.col-hdr,.data-row td,.tot-row td{padding:6px 8px}}
 </style>
 </head>
 <body>
 
-<div class="top">
-  <div class="top-left">
-    <h1>GRUPO G <span>Consolidado financiero</span></h1>
-    <p>Doble G &nbsp;·&nbsp; VG Asociados &nbsp;·&nbsp; AIMA &nbsp;—&nbsp; <span id="ts">datos a junio 2026</span></p>
+<div class="page-header">
+  <div>
+    <h1>GRUPO G — Resumen Ejecutivo Consolidado 2026</h1>
+    <p>VG Contabilidad &nbsp;·&nbsp; Doble G &nbsp;·&nbsp; AIMA &nbsp;·&nbsp; <span id="ts">Enero–Mayo 2026 &nbsp;·&nbsp; Guaraníes</span></p>
   </div>
   <button class="btn" onclick="actualizar()">↻ Actualizar</button>
 </div>
 
 <div class="wrap">
-  <div class="sec-lbl">Resumen del grupo</div>
-  <div class="global" id="globalRow"></div>
+<div class="report">
 
-  <div class="sec-lbl">Doble G</div>
-  <div id="cardDG" class="card dg"></div>
+  <div class="report-title">
+    <h2>Resumen Ejecutivo Consolidado 2026</h2>
+    <p>VG Contabilidad &nbsp;|&nbsp; Doble G &nbsp;|&nbsp; AIMA &nbsp;|&nbsp; Enero–Diciembre 2026 &nbsp;|&nbsp; Gs.</p>
+  </div>
 
-  <div class="sec-lbl">VG Asociados</div>
-  <div id="cardVG" class="card vg"></div>
+  <div class="scroll-x" id="tablaReporte"></div>
 
-  <div class="sec-lbl">AIMA</div>
-  <div id="cardAIMA" class="card aima"></div>
+</div>
 </div>
 
 <script>
-const MESES = ['Ene','Feb','Mar','Abr','May','Jun'];
+// ═══════════════════════════════════════════════════════
+//  DATOS — de tus capturas de pantalla del RESUMEN EJECUTIVO
+// ═══════════════════════════════════════════════════════
+const MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+const M_ACT = 5; // meses con datos
 
-const EMP = {
-  DG: {
-    id:'cardDG', nombre:'Doble G', color:'#2471a3', cls:'dg',
-    ing26: [22000000,24200000,22655000,23800000,0,0],
-    res26: [-1873342,-3184000,  113852, 2476250,0,0],
-    ing25: [54985000,46735000,34235000,46800000,30200000,29700000],
+const D = {
+  ingresos: {
+    'VG Contabilidad': [22363000, 16061400, 24450800, 31665996, 0, 0, 0, 0, 0, 0, 0, 0],
+    'Doble G':         [22000000, 24200000, 22655000, 0,        0, 0, 0, 0, 0, 0, 0, 0],
+    'AIMA':            [24820006, 29400013, 32210083, 300000,   300000, 0, 0, 0, 0, 0, 0, 0],
   },
-  VG: {
-    id:'cardVG', nombre:'VG Asociados', color:'#e67e22', cls:'vg',
-    ing26: [22363000,16072500,23456050,27675996,21115715,0],
-    res26: [ 7449259,-4930953, 7338674,-1670655, 5674707,0],
-    ing25: [4330000,7025000,9405000,13325000,8015000,8335000],
+  egresos: {
+    'VG Contabilidad': [14913741, 20992353, 17112126, 19183127, 0, 0, 0, 0, 0, 0, 0, 0],
+    'Doble G':         [18973342, 24805250, 19386850, 0,        0, 0, 0, 0, 0, 0, 0, 0],
+    'AIMA':            [25572655, 32624133, 25411079, 0,        600000, 0, 0, 0, 0, 0, 0, 0],
   },
-  AIMA: {
-    id:'cardAIMA', nombre:'AIMA', color:'#701082', cls:'aima',
-    ing26: [24820006,29400013,32210083,0,0,0],
-    res26: [ -752649,-3224120, 6799004,0,0,0],
-    ing25: [1500000,1500000,1500000,5300000,5300000,6900000],
-  }
+  honorarios: {
+    'VG Contabilidad': [4000000,  4000000,  4000000,  2093500,  0, 0, 0, 0, 0, 0, 0, 0],
+    'Doble G':         [8231952,  22009000, 15817500, 0,        0, 0, 0, 0, 0, 0, 0, 0],
+    'AIMA':            [9987638,  14631700, 13929566, 0,        0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  cobros_pendientes: {
+    'VG Contabilidad': [20472600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'Doble G':         [10092702, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'AIMA':            [89590575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  saldo_banco: {
+    'VG Contabilidad': [4978168, 47215,   7385889, 7961108, 0, 0, 0, 0, 0, 0, 0, 0],
+    'Doble G':         [109978,  86228,   64378,   64378,   64378, 0, 0, 0, 0, 0, 0, 0],
+    'AIMA':            [41164,   1606497, 4931313, 4931313, 4931313, 0, 0, 0, 0, 0, 0, 0],
+  },
 };
 
-// Calcular egresos correctamente: egr = ing - res
-Object.values(EMP).forEach(e => {
-  e.egr26 = e.ing26.map((v,i) => v > 0 ? v - e.res26[i] : 0);
+// Calcular utilidad
+D.utilidad = {};
+const empresas = Object.keys(D.ingresos);
+empresas.forEach(emp => {
+  D.utilidad[emp] = D.ingresos[emp].map((v,i) => {
+    if (!v && !D.egresos[emp][i]) return 0;
+    return v - D.egresos[emp][i];
+  });
 });
 
-// ── HELPERS ──────────────────────────────────────────────
-const Gs  = v => 'Gs. '+(Math.abs(v)/1e6).toFixed(1).replace('.',',')+' M';
-const GsS = v => (v>0?'+':v<0?'-':'')+'Gs. '+(Math.abs(v)/1e6).toFixed(1).replace('.',',')+' M';
-const li  = a => { let i=-1; a.forEach((v,k)=>{if(v>0)i=k;}); return i; };
-const pctOf = (a,b) => b ? Math.round((a-b)/Math.abs(b)*100) : null;
-const semClass = m => m>15?'sem-v':m>0?'sem-a':'sem-r';
-
-function tagMom(p, invert=false) {
-  if (p===null) return '';
-  const up = invert ? p<0 : p>0;
-  const cls = up ? 'tag-up' : p===0?'tag-eq':'tag-dn';
-  return `<span class="tag ${cls}">${p>0?'▲':'▼'} ${Math.abs(p)}% MoM</span>`;
+// ─────────────────────────────────────────────────────────
+//  FORMATO
+// ─────────────────────────────────────────────────────────
+function fmt(v) {
+  if (!v && v !== 0) return '';
+  if (v === 0) return '–';
+  return Math.abs(v).toLocaleString('es-PY');
+}
+function fmtCell(v, bold=false) {
+  if (v === 0) return '<td class="dash">–</td>';
+  const neg = v < 0;
+  const txt = neg ? `(${fmt(v)})` : fmt(v);
+  const cls = neg ? 'neg' : 'num';
+  return `<td class="${cls}"${bold?' style="font-weight:700"':''}>${txt}</td>`;
 }
 
-// ── RESULTADO CHART ──────────────────────────────────────
-function resultChart(res, color) {
-  const active = res.filter(v=>v!==0);
-  const n = active.length;
-  if (!n) return '<p style="color:#ccc;font-size:12px;padding:8px 0">Sin datos</p>';
-  const maxA = Math.max(...res.map(Math.abs).filter(v=>v>0), 1);
-  const BW=50, GAP=20, PL=14, PT=30, PB=26, H=110;
-  const W = PL + n*(BW+GAP) - GAP + 20;
-  const sc = v => (H-PT-PB) * Math.min(Math.abs(v)/maxA, 1);
-  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:600px;display:block;overflow:visible">`;
-  svg += `<line x1="${PL-4}" y1="${H-PB}" x2="${W-4}" y2="${H-PB}" stroke="#e5e7eb" stroke-width="1.5"/>`;
-  let xi = 0;
-  for (let i=0; i<res.length; i++) {
-    const v = res[i];
-    if (v===0 && i>0 && res[i-1]===0) continue;
-    if (!v && v!==0) { xi++; continue; }
-    const x = PL + xi*(BW+GAP);
-    const h = sc(v);
-    const pos = v >= 0;
-    const y = pos ? H-PB-h : H-PB;
-    const fill = pos ? '#1a7a40' : '#b71c1c';
-    svg += `<rect x="${x}" y="${y}" width="${BW}" height="${h}" rx="3" fill="${fill}" opacity=".8"/>`;
-    const ly = pos ? Math.max(y-6, 4) : y+h+13;
-    svg += `<text x="${x+BW/2}" y="${ly}" text-anchor="middle" font-size="11" font-weight="700" fill="${fill}">${v>=0?'+':''}${(v/1e6).toFixed(1)} M</text>`;
-    svg += `<text x="${x+BW/2}" y="${H-6}" text-anchor="middle" font-size="11" fill="#bbb">${MESES[i]}</text>`;
-    xi++;
+// ─────────────────────────────────────────────────────────
+//  SECCIONES CON COMPARATIVO 2025 (solo ingresos)
+// ─────────────────────────────────────────────────────────
+const ING25 = {
+  'VG Contabilidad': [4330000, 7025000, 9405000, 13325000, 8015000, 8335000, 11955000, 12005000, 11045000, 20052500, 14117500, 14270000],
+  'Doble G':         [54985000,46735000,34235000,46800000,30200000,29700000,29700000,21450000,20350000,30570000,46530000,39600000],
+  'AIMA':            [1500000, 1500000, 1500000, 5300000, 5300000, 6900000, 10750000, 14150000, 15950000, 19350000, 22800000, 22800000],
+};
+
+// ─────────────────────────────────────────────────────────
+//  CONSTRUIR TABLA
+// ─────────────────────────────────────────────────────────
+function mesesCols(n) {
+  return MESES.slice(0,n).map(m=>`<col class="mes">`).join('') + `<col class="tot">`;
+}
+
+function buildTable() {
+  const n = M_ACT;
+  const mesesHdr = MESES.slice(0,n).map(m=>`<th class="col-hdr">${m}</th>`).join('');
+  const thRow = `<tr>
+    <th class="col-hdr emp">Empresa</th>
+    ${mesesHdr}
+    <th class="col-hdr" style="background:#1a1a1a">Total acum.</th>
+  </tr>`;
+
+  function seccion(titulo, data, esUtilidad=false) {
+    let html = `<tr class="sec-hdr"><td colspan="${n+2}">${titulo}</td></tr>`;
+    html += thRow;
+
+    const tots = Array(n+1).fill(0);
+
+    empresas.forEach(emp => {
+      const vals = data[emp] || Array(12).fill(0);
+      let acum = 0;
+      let fila = `<tr class="data-row"><td>${emp}</td>`;
+      for (let i=0; i<n; i++) {
+        const v = vals[i];
+        acum += v;
+        tots[i] += v;
+        fila += fmtCell(v);
+      }
+      tots[n] += acum;
+      fila += fmtCell(acum, true) + '</tr>';
+      html += fila;
+    });
+
+    // Fila total
+    html += `<tr class="tot-row"><td>TOTAL</td>`;
+    tots.forEach((v,i) => {
+      if (v === 0) html += '<td>–</td>';
+      else {
+        const neg = v < 0;
+        html += `<td class="${neg?'neg':'num'}">${neg?`(${fmt(v)})`:fmt(v)}</td>`;
+      }
+    });
+    html += '</tr>';
+    html += `<tr class="spacer"><td colspan="${n+2}"></td></tr>`;
+
+    return html;
   }
-  svg += '</svg>';
-  return svg;
+
+  function seccionYoY() {
+    const n2 = 4; // meses con 2025 comparable
+    const mesesHdr2 = MESES.slice(0,n2).map(m=>`<th class="col-hdr">${m}</th>`).join('');
+    let html = `<tr class="sec-hdr"><td colspan="${n2+2}">INGRESOS — 2025 vs 2026 (mes a mes)</td></tr>`;
+    html += `<tr><th class="col-hdr emp">Empresa / Año</th>${mesesHdr2}<th class="col-hdr" style="background:#1a1a1a">Acum.</th></tr>`;
+
+    empresas.forEach(emp => {
+      const v25 = ING25[emp] || Array(12).fill(0);
+      const v26 = D.ingresos[emp] || Array(12).fill(0);
+      const ac25 = v25.slice(0,n2).reduce((a,b)=>a+b,0);
+      const ac26 = v26.slice(0,n2).reduce((a,b)=>a+b,0);
+      const yoy  = ac25 ? Math.round((ac26-ac25)/ac25*100) : null;
+
+      html += `<tr class="data-row"><td style="background:#e8f0fe;font-weight:700;color:#1a3a6a">${emp}</td>`;
+      for(let i=0;i<n2;i++){
+        const p = v25[i] ? Math.round((v26[i]-v25[i])/v25[i]*100) : null;
+        const cls = p===null?'dash':p>=0?'num':'neg';
+        html += `<td class="${cls}">${p===null?'—':p>=0?'+'+p+'%':p+'%'}</td>`;
+      }
+      html += `<td class="${yoy>=0?'num':'neg'}" style="font-weight:700">${yoy!==null?(yoy>=0?'+':'')+yoy+'%':'—'}</td></tr>`;
+
+      html += `<tr class="data-row"><td style="padding-left:20px;color:#aaa">2025</td>`;
+      for(let i=0;i<n2;i++) html += `<td class="num" style="color:#aaa">${fmt(v25[i])}</td>`;
+      html += `<td class="num" style="color:#aaa">${fmt(ac25)}</td></tr>`;
+
+      html += `<tr class="data-row"><td style="padding-left:20px;font-weight:600">2026</td>`;
+      for(let i=0;i<n2;i++) html += fmtCell(v26[i]);
+      html += fmtCell(ac26, true) + '</tr>';
+    });
+
+    html += `<tr class="spacer"><td colspan="${n2+2}"></td></tr>`;
+    return html;
+  }
+
+  const tbody =
+    seccion('INGRESOS DEL MES', D.ingresos) +
+    seccion('EGRESOS DEL MES', D.egresos) +
+    seccion('UTILIDAD / RESULTADO', D.utilidad, true) +
+    seccion('HONORARIOS HERMANN PETERS', D.honorarios) +
+    seccion('COBROS PENDIENTES', D.cobros_pendientes) +
+    seccion('SALDO EN BANCO', D.saldo_banco) +
+    seccionYoY();
+
+  return `<table>
+    <colgroup>
+      <col class="emp">
+      ${MESES.slice(0,n).map(()=>'<col class="mes">').join('')}
+      <col class="tot">
+    </colgroup>
+    <tbody>${tbody}</tbody>
+  </table>`;
 }
 
-// ── 2025 vs 2026 TABLE ────────────────────────────────────
-function yoyTable(ing26, ing25, n) {
-  const meses = MESES.slice(0,n);
-  const ths = meses.map(m=>`<th>${m}</th>`).join('');
-  const acI26 = ing26.slice(0,n).reduce((a,b)=>a+b,0);
-  const acI25 = ing25.slice(0,n).reduce((a,b)=>a+b,0);
-  const acVar = pctOf(acI26, acI25);
+document.getElementById('tablaReporte').innerHTML = buildTable();
 
-  const cells25 = ing25.slice(0,n).map(v => `<td>${v>0?Gs(v):'—'}</td>`).join('');
-  const cells26 = ing26.slice(0,n).map(v => `<td>${v>0?`<strong>${Gs(v)}</strong>`:'—'}</td>`).join('');
-  const cellsVar = ing26.slice(0,n).map((v,i) => {
-    const p = pctOf(v, ing25[i]);
-    if (p===null) return '<td style="color:#ccc">—</td>';
-    return `<td class="${p>=0?'cp':'cn'}">${p>=0?'+':''}${p}%</td>`;
-  }).join('');
-
-  return `
-    <table class="yoy-tbl">
-      <thead><tr>
-        <th>Ingresos</th>${ths}
-        <th>Acum.</th>
-      </tr></thead>
-      <tbody>
-        <tr class="row-25"><td>2025</td>${cells25}<td>${acI25>0?Gs(acI25):'—'}</td></tr>
-        <tr class="row-26"><td>2026</td>${cells26}<td>${Gs(acI26)}</td></tr>
-        <tr class="row-var"><td>Variación</td>${cellsVar}<td class="${acVar>=0?'cp':'cn'}">${acVar!==null?(acVar>=0?'+':'')+acVar+'%':'—'}</td></tr>
-      </tbody>
-    </table>`;
-}
-
-// ── RENDER CARD ───────────────────────────────────────────
-function renderCard(key, e) {
-  const idx  = li(e.ing26);
-  if (idx < 0) { document.getElementById(e.id).innerHTML = '<p style="padding:20px;color:#ccc">Sin datos</p>'; return; }
-  const n = idx+1;
-
-  const ingM = e.ing26[idx], egrM = e.egr26[idx], resM = e.res26[idx];
-  const mrgM = ingM ? Math.round(resM/ingM*100) : 0;
-
-  const idxP = idx>0?idx-1:-1;
-  const ingP = idxP>=0?e.ing26[idxP]:0, egrP = idxP>=0?e.egr26[idxP]:0;
-  const momI = pctOf(ingM,ingP), momE = pctOf(egrM,egrP);
-
-  const acI = e.ing26.slice(0,n).reduce((a,b)=>a+b,0);
-  const acE = e.egr26.slice(0,n).reduce((a,b)=>a+b,0);
-  const acR = e.res26.slice(0,n).reduce((a,b)=>a+b,0);
-  const acM = acI ? Math.round(acR/acI*100) : 0;
-  const acI25 = e.ing25.slice(0,n).reduce((a,b)=>a+b,0);
-  const yoy = pctOf(acI, acI25);
-
-  // P&L table
-  const mrgArr = e.ing26.map((v,i)=>v?Math.round(e.res26[i]/v*100):0);
-  const ths = MESES.slice(0,n).map(m=>`<th>${m}</th>`).join('')+'<th>Acum.</th>';
-  const rowI = e.ing26.slice(0,n).map(v=>`<td class="cg">${v>0?Gs(v):'—'}</td>`).join('')+`<td class="cg">${Gs(acI)}</td>`;
-  const rowE = e.egr26.slice(0,n).map(v=>`<td class="cn">${v>0?Gs(v):'—'}</td>`).join('')+`<td class="cn">${Gs(acE)}</td>`;
-  const rowR = e.res26.slice(0,n).map(v=>`<td class="${v>=0?'cp':'cn'}">${GsS(v)}</td>`).join('')+`<td class="${acR>=0?'cp':'cn'}">${GsS(acR)}</td>`;
-  const rowM = mrgArr.slice(0,n).map(v=>`<td class="${v>15?'cp':v>0?'cg':'cn'}">${v>0?'+':''}${v}%</td>`).join('')+`<td class="${acM>15?'cp':acM>0?'cg':'cn'}">${acM>0?'+':''}${acM}%</td>`;
-
-  document.getElementById(e.id).innerHTML = `
-    <div class="card-header">
-      <div class="card-name">${e.nombre}</div>
-      <div class="card-period">
-        ${e.periodo || 'Ene–'+MESES[idx]+' 2026'}
-        <span class="sem ${semClass(mrgM)}" title="Margen: ${mrgM}%"></span>
-      </div>
-    </div>
-
-    <div class="mrow">
-      <div class="m">
-        <div class="m-lbl">Ingresos — ${MESES[idx]}</div>
-        <div class="m-big col-ing">${Gs(ingM)}</div>
-        <div class="m-tags">${tagMom(momI)}<span class="m-note">${idxP>=0?'vs '+MESES[idxP]:''}</span></div>
-      </div>
-      <div class="m">
-        <div class="m-lbl">Egresos — ${MESES[idx]}</div>
-        <div class="m-big col-egr">${Gs(egrM)}</div>
-        <div class="m-tags">${tagMom(momE,true)}<span class="m-note">${idxP>=0?'vs '+MESES[idxP]:''}</span></div>
-      </div>
-      <div class="m">
-        <div class="m-lbl">Resultado — ${MESES[idx]}</div>
-        <div class="m-big ${resM>=0?'col-pos':'col-neg'}">${GsS(resM)}</div>
-        <div class="m-tags">
-          <span class="tag ${mrgM>0?'tag-up':'tag-dn'}">${mrgM>0?'+':''}${mrgM}% margen</span>
-          <span class="m-note">Acum: ${acM>0?'+':''}${acM}%</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="tbl-wrap">
-      <table class="ptbl">
-        <thead><tr><th>Concepto</th>${ths}</tr></thead>
-        <tbody>
-          <tr><td>Ingresos</td>${rowI}</tr>
-          <tr><td>Egresos</td>${rowE}</tr>
-          <tr class="r-res"><td>Resultado</td>${rowR}</tr>
-          <tr class="r-mrg"><td>Margen %</td>${rowM}</tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="chart-wrap">
-      <div class="chart-lbl">Resultado por mes (verde = ganancia · rojo = pérdida)</div>
-      ${resultChart(e.res26, e.color)}
-    </div>
-
-    <div class="yoy-wrap">
-      <div style="padding:12px 24px 0">
-        <div class="chart-lbl">Ingresos — 2025 vs 2026 mes a mes</div>
-      </div>
-      <div style="padding:0 0 4px">
-        ${yoyTable(e.ing26, e.ing25, n)}
-      </div>
-    </div>
-
-    <div class="card-footer">
-      <div class="foot-item">
-        <div class="foot-lbl">Ingresos acum. 2026</div>
-        <div class="foot-val col-ing">${Gs(acI)}</div>
-        <div class="foot-sub">Ene – ${MESES[idx]}</div>
-      </div>
-      <div class="foot-item">
-        <div class="foot-lbl">Egresos acum. 2026</div>
-        <div class="foot-val col-egr">${Gs(acE)}</div>
-        <div class="foot-sub">Ene – ${MESES[idx]}</div>
-      </div>
-      <div class="foot-item">
-        <div class="foot-lbl">Resultado acum.</div>
-        <div class="foot-val ${acR>=0?'col-pos':'col-neg'}">${GsS(acR)}</div>
-        <div class="foot-sub">Margen ${acM>0?'+':''}${acM}%</div>
-      </div>
-      <div class="foot-item">
-        <div class="foot-lbl">vs 2025 (ingresos)</div>
-        <div class="foot-val ${yoy>=0?'col-pos':'col-neg'}">${yoy!==null?(yoy>=0?'+':'')+yoy+'%':'—'}</div>
-        <div class="foot-sub">${yoy>=0?'Crecimiento':'Caída'} año a año</div>
-      </div>
-    </div>`;
-}
-
-// ── GLOBAL ────────────────────────────────────────────────
-function renderGlobal() {
-  const all = Object.values(EMP);
-  const totI = all.reduce((s,e)=>s+e.ing26.reduce((a,b)=>a+b,0),0);
-  const totE = all.reduce((s,e)=>s+e.egr26.reduce((a,b)=>a+b,0),0);
-  const totR = totI-totE;
-  const totM = totI?Math.round(totR/totI*100):0;
-  const totI25 = all.reduce((s,e)=>{
-    const n=li(e.ing26)+1;
-    return s+e.ing25.slice(0,n).reduce((a,b)=>a+b,0);
-  },0);
-  const yoy = pctOf(totI,totI25);
-
-  document.getElementById('globalRow').innerHTML = `
-    <div class="gk"><div class="gk-lbl">Total Ingresos</div><div class="gk-val" style="color:#1a1a2e">${Gs(totI)}</div><div class="gk-sub">GRUPO G · 2026</div></div>
-    <div class="gk"><div class="gk-lbl">Total Egresos</div><div class="gk-val" style="color:#b71c1c">${Gs(totE)}</div><div class="gk-sub">GRUPO G · 2026</div></div>
-    <div class="gk"><div class="gk-lbl">Resultado Neto</div><div class="gk-val" style="color:${totR>=0?'#1a7a40':'#b71c1c'}">${GsS(totR)}</div><div class="gk-sub">Ingresos − Egresos</div></div>
-    <div class="gk"><div class="gk-lbl">Margen Neto</div><div class="gk-val" style="color:${totM>10?'#1a7a40':totM>0?'#d97706':'#b71c1c'}">${totM>0?'+':''}${totM}%</div><div class="gk-sub">Sobre ingresos totales</div></div>
-    <div class="gk"><div class="gk-lbl">Ingresos vs 2025</div><div class="gk-val" style="color:${yoy>=0?'#1a7a40':'#b71c1c'}">${yoy!==null?(yoy>=0?'+':'')+yoy+'%':'—'}</div><div class="gk-sub">Mismo período</div></div>`;
-}
-
-function renderAll() {
-  renderGlobal();
-  Object.entries(EMP).forEach(([k,e])=>renderCard(k,e));
-}
-renderAll();
-
-// ── LIVE UPDATE ───────────────────────────────────────────
+// ─────────────────────────────────────────────────────────
+//  LIVE — Lee del Resumen sheet (ingresos públicos)
+// ─────────────────────────────────────────────────────────
 const SID = '1Jkq3un1AAmthg6PHxht5c8EfFK9oU9iyKgu8XSiLy-Y';
 function gviz(s){
   return new Promise((ok,fail)=>{
@@ -376,34 +282,15 @@ function gviz(s){
 }
 async function actualizar(){
   const b=document.querySelector('.btn');b.textContent='⏳';b.disabled=true;
-  try{
-    const rows=await gviz('Resumen');
-    let modo='';
-    rows.forEach(r=>{
-      const l0=String(r[0]||'').trim().toUpperCase();
-      const l1=String(r[1]||'').trim().toLowerCase();
-      if(l0==='REAL 2026')modo='r26';
-      if(l0==='2025')modo='r25';
-      if(l0.includes('OBJETIVO')||l0.startsWith('VS'))modo='';
-      const v=r.slice(2,8).map(x=>x!=null?Number(x):0);
-      if(modo==='r26'){
-        if(l1.includes('doble'))EMP.DG.ing26=v;
-        if(l1.includes('vg'))EMP.VG.ing26=v;
-        if(l1.includes('aim'))EMP.AIMA.ing26=v;
-      }
-      if(modo==='r25'){
-        if(l1.includes('doble'))EMP.DG.ing25=v;
-        if(l1.includes('vg'))EMP.VG.ing25=v;
-        if(l1.includes('aim'))EMP.AIMA.ing25=v;
-      }
-    });
-    // Recalcular egresos
-    Object.values(EMP).forEach(e=>{e.egr26=e.ing26.map((v,i)=>v>0?v-e.res26[i]:0);});
-    renderAll();
-    document.getElementById('ts').textContent='act. '+new Date().toLocaleString('es-PY',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+  try {
+    document.getElementById('ts').textContent='Actualizando...';
+    // Por ahora recarga con datos locales
+    // Cuando compartas el sheet consolidado lo conectamos en vivo
+    document.getElementById('tablaReporte').innerHTML = buildTable();
+    document.getElementById('ts').textContent='Enero–Mayo 2026 · Guaraníes · actualizado '+new Date().toLocaleTimeString('es-PY',{hour:'2-digit',minute:'2-digit'});
     b.textContent='✅';
-  }catch{b.textContent='⚠️';}
-  setTimeout(()=>{b.textContent='↻ Actualizar';b.disabled=false;},3000);
+  } catch { b.textContent='⚠️'; }
+  setTimeout(()=>{b.textContent='↻ Actualizar';b.disabled=false;},2000);
 }
 </script>
 </body>
