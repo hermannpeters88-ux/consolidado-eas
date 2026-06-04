@@ -109,6 +109,11 @@ tbody tr:hover td{background:#fdf9ff}
     <table id="varTable"></table>
   </div>
 
+  <div class="sec">Estado de Resultados — Ingresos vs Egresos 2026</div>
+  <div class="tbl-box" style="margin-bottom:16px">
+    <table id="pyg"></table>
+  </div>
+
   <div class="sec">Arquitectos AIMA 2026</div>
   <div class="tbl-box arch-tbl">
     <table>
@@ -369,10 +374,80 @@ function render(d) {
   card('cAIMA','AIMA',         D.aim26,D.oaim, D.aim25);
   renderChart();
   varTable();
+  pygTable();
   archTable();
 }
 
 render(null);
+
+// ── P&G TABLE ─────────────────────────────────────────────
+const PYG = {
+  dg: {
+    ing:  [22000000, 24200000, 22655000, 23800000, 0, 0],
+    egr:  [18973342, 24954000, 20111148, 18893750, 0, 0]
+  },
+  vg: {
+    ing:  [22363000, 16072500, 23456050, 27675996, 21115715, 0],
+    egr:  [14913741, 21003453, 16117376, 29346651, 15441008, 0]
+  },
+  aima: {
+    ing:  [24820006, 29400013, 32210083, 300000, 300000, 0],
+    egr:  [25572655, 32624133, 25411079, 0, 600000, 0]
+  }
+};
+
+function pygTable() {
+  const table = document.getElementById('pyg');
+  const cos = [
+    {n:'Doble G',  d:PYG.dg,   cl:'#2471a3'},
+    {n:'VG Asoc.', d:PYG.vg,   cl:'#e67e22'},
+    {n:'AIMA',     d:PYG.aima, cl:'#701082'}
+  ];
+  let html = `<thead><tr><th>Empresa</th><th>Concepto</th>${D.meses.map(m=>`<th>${m}</th>`).join('')}<th>Acumulado</th></tr></thead><tbody>`;
+
+  cos.forEach(co => {
+    const res = co.d.ing.map((v,i) => v || co.d.egr[i] ? v - co.d.egr[i] : null);
+    const totIng = co.d.ing.reduce((a,b)=>a+b,0);
+    const totEgr = co.d.egr.reduce((a,b)=>a+b,0);
+    const totRes = totIng - totEgr;
+
+    html += `<tr>
+      <td rowspan="3" style="font-weight:700;color:${co.cl};vertical-align:middle;border-right:3px solid ${co.cl}20">${co.n}</td>
+      <td style="color:#555;font-size:11.5px">Ingresos</td>
+      ${co.d.ing.map(v=>`<td style="color:#1e8449;font-size:12px">${v>0?M(v):'—'}</td>`).join('')}
+      <td style="font-weight:700;color:#1e8449">${M(totIng)}</td>
+    </tr>
+    <tr>
+      <td style="color:#555;font-size:11.5px">Egresos</td>
+      ${co.d.egr.map(v=>`<td style="color:#c0392b;font-size:12px">${v>0?M(v):'—'}</td>`).join('')}
+      <td style="font-weight:700;color:#c0392b">${M(totEgr)}</td>
+    </tr>
+    <tr style="background:#faf7fc">
+      <td style="color:#555;font-size:11.5px;font-weight:700">Resultado</td>
+      ${res.map(v=>v===null?'<td>—</td>':
+        `<td style="font-weight:700;font-size:12px;color:${v>=0?'#1e8449':'#c0392b'}">${v>=0?'+':''}${M(v)}</td>`
+      ).join('')}
+      <td style="font-weight:800;font-size:13px;color:${totRes>=0?'#1e8449':'#c0392b'}">${totRes>=0?'+':''}${M(totRes)}</td>
+    </tr>`;
+  });
+
+  // Total general
+  const totIngAll = ['dg','vg','aima'].reduce((s,k)=>s+PYG[k].ing.reduce((a,b)=>a+b,0),0);
+  const totEgrAll = ['dg','vg','aima'].reduce((s,k)=>s+PYG[k].egr.reduce((a,b)=>a+b,0),0);
+  const totResAll = totIngAll - totEgrAll;
+  const byMes = D.meses.map((_,i)=>
+    PYG.dg.ing[i]+PYG.vg.ing[i]+PYG.aima.ing[i] - PYG.dg.egr[i] - PYG.vg.egr[i] - PYG.aima.egr[i]
+  );
+
+  html += `<tr class="tot">
+    <td colspan="2">TOTAL CONSOLIDADO</td>
+    ${byMes.map(v=>`<td class="${v>0?'pos-cell':'neg-cell'}">${v!==0?(v>0?'+':'')+M(v):'—'}</td>`).join('')}
+    <td class="${totResAll>=0?'pos-cell':'neg-cell'}" style="font-size:13px">${totResAll>=0?'+':''}${M(totResAll)}</td>
+  </tr>`;
+
+  html += '</tbody>';
+  table.innerHTML = html;
+}
 
 // ── LIVE REFRESH ──────────────────────────────────────────
 const SHEET = '1Jkq3un1AAmthg6PHxht5c8EfFK9oU9iyKgu8XSiLy-Y';
