@@ -6,560 +6,377 @@
 <title>Consolidado VG EAS</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#eef0f5;color:#1a1a2e;font-size:14px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f7;color:#1a1a2e}
 
-/* HEADER */
-.top{background:linear-gradient(135deg,#701082,#4a0856);color:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
-.top h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
-.top p{font-size:11px;opacity:.7;margin-top:2px}
-.btn-refresh{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
-.btn-refresh:hover{background:rgba(255,255,255,.25)}
+.top{background:linear-gradient(135deg,#701082,#4a0856);color:#fff;padding:14px 26px;display:flex;justify-content:space-between;align-items:center}
+.top h1{font-size:17px;font-weight:700}.top p{font-size:11px;opacity:.65;margin-top:2px}
+.btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
+.btn:hover{background:rgba(255,255,255,.25)}
 
-/* LAYOUT */
-.wrap{max-width:1140px;margin:0 auto;padding:20px 16px 60px}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 16px 60px}
 
-/* GLOBAL KPI STRIP */
-.global-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:24px}
-.gs{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 1px 4px rgba(0,0,0,.07);text-align:center}
-.gs-lbl{font-size:9.5px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.6px}
-.gs-val{font-size:20px;font-weight:800;margin-top:5px;line-height:1}
-.gs-sub{font-size:10.5px;color:#aaa;margin-top:4px}
-.gs-val.pos{color:#1e8449}.gs-val.neg{color:#c0392b}.gs-val.neu{color:#2c3e50}
+/* GLOBAL STRIP */
+.global{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px}
+.g{background:#fff;border-radius:10px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.07);text-align:center}
+.g-lbl{font-size:9.5px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.g-val{font-size:20px;font-weight:800;line-height:1}
+.g-sub{font-size:10.5px;color:#bbb;margin-top:4px}
+.green{color:#1a7a40}.red{color:#b71c1c}.dark{color:#1a1a2e}.blue{color:#1a4f7a}.orange{color:#b45309}
 
-/* COMPANY SECTION */
-.co-sec{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);margin-bottom:20px;overflow:hidden}
-.co-sec.dg  .co-hdr{border-left:5px solid #2471a3}.co-sec.vg  .co-hdr{border-left:5px solid #e67e22}.co-sec.aima .co-hdr{border-left:5px solid #701082}
-.co-hdr{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0eaf6}
-.co-title{font-size:15px;font-weight:800}
-.co-sec.dg  .co-title{color:#2471a3}.co-sec.vg  .co-title{color:#e67e22}.co-sec.aima .co-title{color:#701082}
-.co-hdr-right{display:flex;align-items:center;gap:12px}
-.sem{width:14px;height:14px;border-radius:50%}
-.sem.v{background:#27ae60;box-shadow:0 0 5px rgba(39,174,96,.5)}
-.sem.a{background:#f39c12;box-shadow:0 0 5px rgba(243,156,18,.5)}
-.sem.r{background:#e74c3c;box-shadow:0 0 5px rgba(231,76,60,.5)}
-.co-periodo{font-size:11px;color:#aaa;font-weight:500}
+/* COMPANY CARD */
+.card{background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:20px;overflow:hidden}
+.card-top{padding:18px 24px 16px;border-bottom:1px solid #f0ecf8}
+.card-name{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px}
+.card-name .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot-v{background:#1a7a40;box-shadow:0 0 6px rgba(26,122,64,.5)}
+.dot-a{background:#d97706;box-shadow:0 0 6px rgba(217,119,6,.5)}
+.dot-r{background:#b71c1c;box-shadow:0 0 6px rgba(183,28,28,.5)}
+.card-period{font-size:12px;color:#aaa;font-weight:400;margin-left:auto}
 
-/* MINI KPI CARDS */
-.mkpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid #f0eaf6}
-.mkpi{padding:14px 18px;border-right:1px solid #f0eaf6}
-.mkpi:last-child{border-right:none}
-.mkpi-lbl{font-size:9.5px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px}
-.mkpi-val{font-size:22px;font-weight:800;margin-top:6px;line-height:1}
-.mkpi-val.pos{color:#1e8449}.mkpi-val.neg{color:#c0392b}.mkpi-val.neu{color:#2c3e50}
-.mkpi-sub{font-size:11px;margin-top:5px;display:flex;gap:8px;flex-wrap:wrap}
-.delta{font-weight:700;font-size:11px;padding:2px 6px;border-radius:10px}
-.delta.up{background:#e8f5e9;color:#1e8449}.delta.dn{background:#fdecea;color:#c0392b}.delta.eq{background:#f5f5f5;color:#888}
-.badge-lbl{font-size:10px;color:#aaa}
+/* 3 BIG METRICS */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid #f0ecf8}
+.metric{padding:20px 24px;border-right:1px solid #f0ecf8}
+.metric:last-child{border-right:none}
+.m-lbl{font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.m-val{font-size:28px;font-weight:800;line-height:1;margin-bottom:8px}
+.m-compare{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tag{font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px}
+.tag-up{background:#e6f4ec;color:#1a7a40}
+.tag-dn{background:#fdecea;color:#b71c1c}
+.tag-eq{background:#f3f4f6;color:#888}
+.m-sub{font-size:11px;color:#bbb}
 
-/* P&L TABLE */
-.pyl-wrap{padding:0 0 4px;overflow-x:auto}
-.pyl-table{width:100%;border-collapse:collapse;font-size:12.5px}
-.pyl-table th{background:#faf5fd;color:#888;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:8px 14px;text-align:right;border-bottom:1px solid #f0eaf6;white-space:nowrap}
-.pyl-table th:first-child{text-align:left;min-width:90px}
-.pyl-table td{padding:7px 14px;text-align:right;border-bottom:1px solid #faf5fc;white-space:nowrap}
-.pyl-table td:first-child{text-align:left;font-size:11px;font-weight:600;color:#666}
-.pyl-table tr.ing td{background:#f8fffe}.pyl-table tr.egr td{background:#fffaf8}.pyl-table tr.res td{background:#fdfbff;font-weight:700}
-.pyl-table tr.mrg td{background:#faf5fd;font-size:11.5px}
-.pyl-table tr:last-child td{border-bottom:none}
-.c-pos{color:#1e8449;font-weight:700}.c-neg{color:#c0392b;font-weight:700}.c-neu{color:#555}
+/* MONTH TABLE */
+.tbl-section{padding:0;overflow-x:auto;border-bottom:1px solid #f0ecf8}
+.mtbl{width:100%;border-collapse:collapse;font-size:13px}
+.mtbl th{background:#faf8fd;font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.4px;padding:9px 16px;text-align:right;border-bottom:1px solid #f0ecf8}
+.mtbl th:first-child{text-align:left;min-width:100px}
+.mtbl td{padding:9px 16px;text-align:right;border-bottom:1px solid #faf5fc}
+.mtbl td:first-child{text-align:left;font-size:11.5px;font-weight:600;color:#777}
+.mtbl tr:last-child td{border-bottom:none}
+.mtbl tr.res-row td{font-weight:700}
+.mtbl tr.mrg-row td{font-size:12px;color:#999}
+.c+{color:#1a7a40}.c-{color:#b71c1c}.cn{color:#555}
 
-/* MINI CHART */
-.chart-row{padding:14px 18px 10px;border-top:1px solid #f0eaf6}
-.chart-title{font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+/* RESULTADO CHART */
+.chart-section{padding:16px 24px;border-bottom:1px solid #f0ecf8}
+.chart-lbl{font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
 
-/* YOY BAR */
-.yoy-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px 18px;border-top:1px solid #f0eaf6;background:#faf7fc}
+/* YOY */
+.yoy{display:grid;grid-template-columns:repeat(3,1fr);background:#faf8fd;padding:14px 24px;gap:16px}
 .yoy-item{text-align:center}
-.yoy-lbl{font-size:9.5px;color:#aaa;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
-.yoy-val{font-size:15px;font-weight:800;margin-top:4px}
-.yoy-delta{font-size:11px;margin-top:3px;font-weight:600}
+.yoy-lbl{font-size:9.5px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.yoy-val{font-size:16px;font-weight:800}
+.yoy-sub{font-size:10.5px;color:#bbb;margin-top:2px}
 
-/* RESPONSIVE */
-@media(max-width:700px){
-  .mkpi-row{grid-template-columns:repeat(2,1fr)}
-  .mkpi{border-bottom:1px solid #f0eaf6}
-  .global-strip{grid-template-columns:repeat(2,1fr)}
-  .yoy-row{grid-template-columns:1fr}
+@media(max-width:640px){
+  .global{grid-template-columns:repeat(2,1fr)}
+  .metrics{grid-template-columns:1fr}
+  .metric{border-right:none;border-bottom:1px solid #f0ecf8}
+  .yoy{grid-template-columns:1fr;gap:8px}
 }
-@media(max-width:420px){.mkpi-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="top">
-  <div>
-    <h1>Consolidado VG EAS</h1>
-    <p>Doble G &nbsp;·&nbsp; VG Asociados &nbsp;·&nbsp; AIMA &nbsp;—&nbsp; <span id="ts">datos a junio 2026</span></p>
-  </div>
-  <button class="btn-refresh" onclick="actualizarEnVivo()">↻ Actualizar</button>
+  <div><h1>Consolidado VG EAS</h1><p>Doble G · VG Asociados · AIMA — <span id="ts">datos 2026</span></p></div>
+  <button class="btn" onclick="actualizar()">↻ Actualizar</button>
 </div>
 
 <div class="wrap">
-
-  <!-- GLOBAL STRIP -->
-  <div class="global-strip" id="globalStrip"></div>
-
-  <!-- DOBLE G -->
-  <div class="co-sec dg" id="seccDG"></div>
-
-  <!-- VG ASOCIADOS -->
-  <div class="co-sec vg" id="seccVG"></div>
-
-  <!-- AIMA -->
-  <div class="co-sec aima" id="seccAIMA"></div>
-
+  <div class="global" id="globalRow"></div>
+  <div id="cardDG"></div>
+  <div id="cardVG"></div>
+  <div id="cardAIMA"></div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-//  DATOS
-// ═══════════════════════════════════════════════════════
-const MESES = ['Ene','Feb','Mar','Abr','May','Jun'];
+// ─────────────────────────────────────────────────────────
+// DATOS — Estado de Resultados 2026
+// Egresos DG = Ingresos - Resultado (datos correctos del spreadsheet)
+// ─────────────────────────────────────────────────────────
+const MESES = ['Ene','Feb','Mar','Abr','May'];
 
-const COS = {
-  dg: {
-    nombre: 'Doble G',
-    color: '#2471a3',
+const EMP = {
+  DG: {
+    id: 'cardDG', nombre: 'Doble G', color: '#2471a3',
     periodo: 'Ene – Abr 2026',
-    ing26:  [22000000, 24200000, 22655000, 23800000, 0, 0],
-    egr26:  [18973342, 24954000, 20111148, 18893750, 0, 0],
-    ing25:  [54985000, 46735000, 34235000, 46800000, 30200000, 29700000],
-    egr25:  [0,0,0,0,0,0]  // no disponible
+    ing: [22000000, 24200000, 22655000, 23800000, 0],
+    res: [-1873342, -3184000,   113852,  2476250, 0],
+    // egr = ing - res
+    ing25: [54985000,46735000,34235000,46800000,30200000]
   },
-  vg: {
-    nombre: 'VG Asociados',
-    color: '#e67e22',
+  VG: {
+    id: 'cardVG', nombre: 'VG Asociados', color: '#e67e22',
     periodo: 'Ene – May 2026',
-    ing26:  [22363000, 16072500, 23456050, 27675996, 21115715, 0],
-    egr26:  [14913741, 21003453, 16117376, 29346651, 15441008, 0],
-    ing25:  [4330000,  7025000,  9405000,  13325000, 8015000,  8335000],
-    egr25:  [0,0,0,0,0,0]
+    ing: [22363000,16072500,23456050,27675996,21115715],
+    res: [ 7449259,-4930953, 7338674,-1670655, 5674707],
+    ing25: [4330000,7025000,9405000,13325000,8015000]
   },
-  aima: {
-    nombre: 'AIMA',
-    color: '#701082',
+  AIMA: {
+    id: 'cardAIMA', nombre: 'AIMA', color: '#701082',
     periodo: 'Ene – Mar 2026',
-    ing26:  [24820006, 29400013, 32210083, 0, 0, 0],
-    egr26:  [25572655, 32624133, 25411079, 0, 0, 0],
-    ing25:  [1500000,  1500000,  1500000,  5300000, 5300000, 6900000],
-    egr25:  [0,0,0,0,0,0]
+    ing: [24820006,29400013,32210083,0,0],
+    res: [ -752649,-3224120, 6799004,0,0],
+    ing25: [1500000,1500000,1500000,5300000,5300000]
   }
 };
 
-// ═══════════════════════════════════════════════════════
-//  HELPERS
-// ═══════════════════════════════════════════════════════
-const Gs   = v => v != null ? 'Gs. '+(Math.abs(v)/1e6).toFixed(1).replace('.',',')+' M' : '—';
-const GsS  = v => v > 0 ? '+'+Gs(v) : v < 0 ? '-'+Gs(v) : '—';
-const Pct  = (v, base) => base ? Math.round(v/base*100) : null;
-const PctS = p => p != null ? (p>=0?'+':'')+p+'%' : '—';
-const li   = a => { let i=-1; a.forEach((v,k)=>{if(v>0)i=k;}); return i; };
-const dc   = c => ({v:'verde',a:'amarillo',r:'rojo'}[c]||c);
+// Calcular egresos desde ing y res
+Object.values(EMP).forEach(e => {
+  e.egr = e.ing.map((v,i) => v > 0 ? v - e.res[i] : 0);
+});
 
-function semColor(res, ing) {
-  if (!ing) return 'a';
-  const m = res/ing;
-  return m > 0.15 ? 'v' : m > 0 ? 'a' : 'r';
+// ─────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────
+const Gs  = v => 'Gs. '+(Math.abs(v)/1e6).toFixed(1).replace('.',',')+' M';
+const GsS = v => (v>0?'+':v<0?'-':'') + 'Gs. '+(Math.abs(v)/1e6).toFixed(1).replace('.',',')+' M';
+const pct = (a,b) => b ? Math.round((a-b)/Math.abs(b)*100) : null;
+const li  = a => { let i=-1; a.forEach((v,k)=>{if(v>0)i=k;}); return i; };
+
+function semDot(margen) {
+  return margen > 15 ? 'dot-v' : margen > 0 ? 'dot-a' : 'dot-r';
 }
 
-// ═══════════════════════════════════════════════════════
-//  MINI SVG CHART (ingresos vs egresos por mes)
-// ═══════════════════════════════════════════════════════
-function miniChart(ing, egr, color) {
-  const n = ing.filter(v=>v>0).length || 1;
-  const all = [...ing,...egr].filter(v=>v>0);
-  const maxV = all.length ? Math.max(...all) : 1;
-  const BW=18, GAP=2, GG=10, PL=8, PB=20, H=80;
-  const W = PL + n*(2*BW+GAP+GG);
-  const sc = v => (H-PB)*(v/maxV);
-  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${Math.max(W*2,200)}px;display:block;overflow:visible">`;
-  for (let m=0; m<n; m++) {
-    const gx = PL + m*(2*BW+GAP+GG);
-    const iv = ing[m]||0, ev = egr[m]||0;
-    if (iv>0) {
-      const h=sc(iv), y=H-PB-h;
-      svg += `<rect x="${gx}" y="${y}" width="${BW}" height="${h}" rx="2" fill="${color}" opacity=".75"/>`;
-    }
-    if (ev>0) {
-      const h=sc(ev), y=H-PB-h;
-      svg += `<rect x="${gx+BW+GAP}" y="${y}" width="${BW}" height="${h}" rx="2" fill="#e74c3c" opacity=".5"/>`;
-    }
-    const res = iv - ev;
-    if (iv>0 && ev>0) {
-      const cx = gx+BW;
-      const cy = H-PB-sc(Math.max(iv,ev))-5;
-      svg += `<text x="${cx}" y="${cy}" text-anchor="middle" font-size="8" fill="${res>=0?'#1e8449':'#c0392b'}" font-weight="700">${res>=0?'+':''}${(res/1e6).toFixed(1)}</text>`;
-    }
-    svg += `<text x="${gx+BW}" y="${H-4}" text-anchor="middle" font-size="8.5" fill="#bbb">${MESES[m]}</text>`;
+function tag(p, invert=false) {
+  if (p === null) return '';
+  const bueno = invert ? p < 0 : p > 0;
+  const cls = p > 0 ? (invert?'tag-dn':'tag-up') : p < 0 ? (invert?'tag-up':'tag-dn') : 'tag-eq';
+  return `<span class="tag ${cls}">${p>0?'▲':'▼'} ${Math.abs(p)}% MoM</span>`;
+}
+
+// ─────────────────────────────────────────────────────────
+// CHART — barras del resultado mensual
+// ─────────────────────────────────────────────────────────
+function resultChart(res, color, meses) {
+  const n = res.filter((_,i)=>meses[i]).length;
+  if (!n) return '';
+  const maxA = Math.max(...res.map(Math.abs).filter(v=>v>0), 1);
+  const BW=44, GAP=18, PL=10, PT=28, PB=24, H=100;
+  const W = PL + n*(BW+GAP);
+  const sc = v => (H-PT-PB) * (Math.abs(v)/maxA);
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W*1.4}px;display:block;overflow:visible">`;
+  // zero line
+  svg += `<line x1="${PL}" y1="${H-PB}" x2="${W-4}" y2="${H-PB}" stroke="#e5e7eb" stroke-width="1.5"/>`;
+
+  for (let i=0; i<n; i++) {
+    const v = res[i];
+    if (!v && v!==0) continue;
+    const x = PL + i*(BW+GAP);
+    const h = sc(v);
+    const pos = v >= 0;
+    const y = pos ? H-PB-h : H-PB;
+    const fill = pos ? '#1a7a40' : '#b71c1c';
+    const opacity = pos ? '.8' : '.7';
+
+    svg += `<rect x="${x}" y="${y}" width="${BW}" height="${h}" rx="3" fill="${fill}" opacity="${opacity}"/>`;
+    // Value label
+    const ly = pos ? y - 5 : y + h + 12;
+    svg += `<text x="${x+BW/2}" y="${ly}" text-anchor="middle" font-size="10.5" font-weight="700" fill="${fill}">${v>=0?'+':''}${(v/1e6).toFixed(1)}</text>`;
+    // Month label
+    svg += `<text x="${x+BW/2}" y="${H-5}" text-anchor="middle" font-size="10.5" fill="#bbb">${MESES[i]}</text>`;
   }
-  svg += `<rect x="${W-36}" y="${H-12}" width="8" height="8" rx="1" fill="${color}" opacity=".75"/>`;
-  svg += `<text x="${W-26}" y="${H-5}" font-size="8" fill="#999">Ing.</text>`;
-  svg += `<rect x="${W-36}" y="${H-22}" width="8" height="8" rx="1" fill="#e74c3c" opacity=".5"/>`;
-  svg += `<text x="${W-26}" y="${H-15}" font-size="8" fill="#999">Egr.</text>`;
   svg += '</svg>';
   return svg;
 }
 
-// ═══════════════════════════════════════════════════════
-//  RENDER EMPRESA SECTION
-// ═══════════════════════════════════════════════════════
-function renderSeccion(key, co) {
-  const { nombre, color, periodo, ing26, egr26, ing25 } = co;
-  const idx   = li(ing26);
+// ─────────────────────────────────────────────────────────
+// RENDER COMPANY CARD
+// ─────────────────────────────────────────────────────────
+function renderCard(key, e) {
+  const idx  = li(e.ing);
   if (idx < 0) return;
 
-  const ingM  = ing26[idx];
-  const egrM  = egr26[idx];
-  const resM  = ingM - egrM;
-  const mrgM  = ingM ? Math.round(resM/ingM*100) : null;
-  const sem   = semColor(resM, ingM);
+  const ingM = e.ing[idx], egrM = e.egr[idx], resM = e.res[idx];
+  const mrgM = ingM ? Math.round(resM/ingM*100) : 0;
+  const dot  = semDot(mrgM);
 
-  // MoM
-  const idxPrev = idx > 0 ? idx-1 : -1;
-  const ingPrev = idxPrev >= 0 ? ing26[idxPrev] : 0;
-  const egrPrev = idxPrev >= 0 ? egr26[idxPrev] : 0;
-  const resPrev = ingPrev - egrPrev;
-  const momIng  = ingPrev  ? Math.round((ingM-ingPrev)/ingPrev*100)   : null;
-  const momEgr  = egrPrev  ? Math.round((egrM-egrPrev)/egrPrev*100)   : null;
-  const momRes  = resPrev  ? Math.round((resM-resPrev)/Math.abs(resPrev)*100) : null;
+  const idxP = idx > 0 ? idx - 1 : -1;
+  const ingP = idxP >= 0 ? e.ing[idxP] : 0;
+  const egrP = idxP >= 0 ? e.egr[idxP] : 0;
+  const resP = idxP >= 0 ? e.res[idxP] : 0;
+  const momI = pct(ingM, ingP);
+  const momE = pct(egrM, egrP);
 
-  // Acumulados 2026
-  const acIng26 = ing26.reduce((a,b)=>a+b,0);
-  const acEgr26 = egr26.reduce((a,b)=>a+b,0);
-  const acRes26 = acIng26 - acEgr26;
-  const acMrg26 = acIng26 ? Math.round(acRes26/acIng26*100) : null;
+  // Acumulados
+  const n      = idx + 1;
+  const acIng  = e.ing.slice(0,n).reduce((a,b)=>a+b,0);
+  const acEgr  = e.egr.slice(0,n).reduce((a,b)=>a+b,0);
+  const acRes  = e.res.slice(0,n).reduce((a,b)=>a+b,0);
+  const acMrg  = acIng ? Math.round(acRes/acIng*100) : 0;
 
-  // YoY (ingresos) — mismo período
-  const acIng25 = ing25.slice(0,idx+1).reduce((a,b)=>a+b,0);
-  const yoyIng  = acIng25 ? Math.round((acIng26-acIng25)/acIng25*100) : null;
+  // YoY
+  const acI25  = e.ing25.slice(0,n).reduce((a,b)=>a+b,0);
+  const yoy    = acI25 ? Math.round((acIng-acI25)/acI25*100) : null;
 
-  // Helper para delta badge
-  const badge = (p, invertido=false) => {
-    if (p === null) return '';
-    const good = invertido ? p < 0 : p > 0;
-    const cls  = p > 0 ? (invertido?'dn':'up') : p < 0 ? (invertido?'up':'dn') : 'eq';
-    return `<span class="delta ${cls}">${p > 0 ? '▲' : p < 0 ? '▼' : ''}${Math.abs(p)}% MoM</span>`;
+  // Tabla
+  const meses  = MESES.slice(0,n);
+  const thCols = meses.map(m=>`<th>${m}</th>`).join('') + '<th>Acum.</th>';
+
+  const fmtI = v => v>0 ? `<span class="cn">${Gs(v)}</span>` : '<span style="color:#ddd">—</span>';
+  const fmtE = v => v>0 ? `<span class="c-">${Gs(v)}</span>` : '<span style="color:#ddd">—</span>';
+  const fmtR = v => {
+    if (!v && v!==0) return '<span style="color:#ddd">—</span>';
+    return `<span class="${v>=0?'c+':'c-'}">${GsS(v)}</span>`;
+  };
+  const fmtM = v => {
+    const cl = v>15?'c+':v>0?'cn':'c-';
+    return `<span class="${cl}">${v>0?'+':''}${v}%</span>`;
   };
 
-  // P&L table rows
-  const mesesActivos = MESES.slice(0, idx+1);
-  const thRow = `<tr><th>Concepto</th>${mesesActivos.map(m=>`<th>${m}</th>`).join('')}<th>Acumulado</th></tr>`;
+  const mrgData = e.ing.map((v,i) => v ? Math.round(e.res[i]/v*100) : 0);
 
-  const row = (lbl, data, cls, isMrg=false) => {
-    const cells = data.slice(0, idx+1).map(v => {
-      if (!v && v!==0) return '<td>—</td>';
-      if (isMrg) {
-        const pct = v;
-        return `<td class="${pct>15?'c-pos':pct>0?'c-neu':'c-neg'}">${pct>0?'+':''}${pct}%</td>`;
-      }
-      const sign = cls==='res';
-      const cl   = cls==='ing'?'c-pos':cls==='egr'?'c-neg':v>=0?'c-pos':'c-neg';
-      return `<td class="${cl}">${sign&&v>0?'+':''}${Gs(v)}</td>`;
-    });
-    const acum = data.slice(0,idx+1).reduce((a,b)=>a+(b||0),0);
-    const acumCell = isMrg
-      ? `<td class="${acum>15?'c-pos':acum>0?'c-neu':'c-neg'}" style="font-weight:800">${acum>0?'+':''}${acum}%</td>`
-      : `<td class="${cls==='ing'?'c-pos':cls==='egr'?'c-neg':acum>=0?'c-pos':'c-neg'}" style="font-weight:800">${cls!=='egr'&&acum>0?'+':''}${Gs(acum)}</td>`;
-    return `<tr class="${cls}"><td>${lbl}</td>${cells.join('')}${acumCell}</tr>`;
-  };
+  document.getElementById(e.id).innerHTML = `
+<div class="card">
+  <div class="card-top">
+    <div class="card-name">
+      <span class="dot ${dot}"></span>
+      ${e.nombre}
+      <span class="card-period">${e.periodo}</span>
+    </div>
+  </div>
 
-  const mrgData = ing26.slice(0,idx+1).map((v,i)=>v?(Math.round((v-egr26[i])/v*100)):0);
-
-  const html = `
-    <div class="co-hdr">
-      <span class="co-title">${nombre}</span>
-      <div class="co-hdr-right">
-        <span class="co-periodo">${periodo}</span>
-        <span class="sem ${sem}" title="Rentabilidad: ${mrgM !== null ? mrgM+'%' : '—'}"></span>
+  <div class="metrics">
+    <div class="metric">
+      <div class="m-lbl">Ingresos — ${MESES[idx]}</div>
+      <div class="m-val dark">${Gs(ingM)}</div>
+      <div class="m-compare">
+        ${tag(momI)}
+        <span class="m-sub">${idxP>=0?'vs '+MESES[idxP]:''}</span>
       </div>
     </div>
-
-    <div class="mkpi-row">
-      <div class="mkpi">
-        <div class="mkpi-lbl">Ingresos (mes)</div>
-        <div class="mkpi-val neu">${Gs(ingM)}</div>
-        <div class="mkpi-sub">
-          ${badge(momIng)}
-          <span class="badge-lbl">vs ${MESES[idxPrev]||'—'}</span>
-        </div>
-      </div>
-      <div class="mkpi">
-        <div class="mkpi-lbl">Egresos (mes)</div>
-        <div class="mkpi-val" style="color:#c0392b">${Gs(egrM)}</div>
-        <div class="mkpi-sub">
-          ${badge(momEgr, true)}
-          <span class="badge-lbl">vs ${MESES[idxPrev]||'—'}</span>
-        </div>
-      </div>
-      <div class="mkpi">
-        <div class="mkpi-lbl">Resultado (mes)</div>
-        <div class="mkpi-val ${resM>=0?'pos':'neg'}">${resM>=0?'+':''}${Gs(resM)}</div>
-        <div class="mkpi-sub">
-          ${idxPrev>=0?`<span class="delta ${resM>resPrev?'up':'dn'}">${resM>resPrev?'▲ Mejor':'▼ Peor'} que ${MESES[idxPrev]}</span>`:''}
-        </div>
-      </div>
-      <div class="mkpi">
-        <div class="mkpi-lbl">Margen %</div>
-        <div class="mkpi-val ${mrgM>15?'pos':mrgM>0?'neu':'neg'}">${mrgM!==null?mrgM+'%':'—'}</div>
-        <div class="mkpi-sub">
-          <span class="badge-lbl">Acum.: ${acMrg26!==null?acMrg26+'%':'—'} &nbsp;·&nbsp; Resultado: ${acRes26>=0?'+':''}${Gs(acRes26)}</span>
-        </div>
+    <div class="metric">
+      <div class="m-lbl">Egresos — ${MESES[idx]}</div>
+      <div class="m-val red">${Gs(egrM)}</div>
+      <div class="m-compare">
+        ${tag(momE,true)}
+        <span class="m-sub">${idxP>=0?'vs '+MESES[idxP]:''}</span>
       </div>
     </div>
-
-    <div class="pyl-wrap">
-      <table class="pyl-table">
-        <thead>${thRow}</thead>
-        <tbody>
-          ${row('Ingresos', ing26, 'ing')}
-          ${row('Egresos',  egr26, 'egr')}
-          ${row('Resultado',ing26.map((v,i)=>v?(v-egr26[i]):0),'res')}
-          ${row('Margen %', mrgData, 'mrg', true)}
-        </tbody>
-      </table>
+    <div class="metric">
+      <div class="m-lbl">Resultado — ${MESES[idx]}</div>
+      <div class="m-val ${resM>=0?'green':'red'}">${GsS(resM)}</div>
+      <div class="m-compare">
+        <span class="tag ${resM>0?'tag-up':'tag-dn'}">${mrgM>0?'+':''}${mrgM}% margen</span>
+        <span class="m-sub">Acum: ${acMrg>0?'+':''}${acMrg}%</span>
+      </div>
     </div>
+  </div>
 
-    <div class="chart-row">
-      <div class="chart-title">Ingresos vs Egresos — ${periodo}</div>
-      ${miniChart(ing26, egr26, color)}
+  <div class="tbl-section">
+    <table class="mtbl">
+      <thead><tr><th>Concepto</th>${thCols}</tr></thead>
+      <tbody>
+        <tr><td>Ingresos</td>${e.ing.slice(0,n).map(fmtI).map(v=>`<td>${v}</td>`).join('')}<td>${fmtI(acIng)}</td></tr>
+        <tr><td>Egresos</td>${e.egr.slice(0,n).map(fmtE).map(v=>`<td>${v}</td>`).join('')}<td>${fmtE(acEgr)}</td></tr>
+        <tr class="res-row"><td>Resultado</td>${e.res.slice(0,n).map(fmtR).map(v=>`<td>${v}</td>`).join('')}<td>${fmtR(acRes)}</td></tr>
+        <tr class="mrg-row"><td>Margen %</td>${mrgData.slice(0,n).map(fmtM).map(v=>`<td>${v}</td>`).join('')}<td>${fmtM(acMrg)}</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-lbl">Resultado mensual (Gs.)</div>
+    ${resultChart(e.res, e.color, MESES.slice(0,n).map(()=>true))}
+  </div>
+
+  <div class="yoy">
+    <div class="yoy-item">
+      <div class="yoy-lbl">Ingresos acum. 2026</div>
+      <div class="yoy-val dark">${Gs(acIng)}</div>
+      <div class="yoy-sub">Ene – ${MESES[idx]}</div>
     </div>
-
-    <div class="yoy-row">
-      <div class="yoy-item">
-        <div class="yoy-lbl">Ingresos acum. 2026</div>
-        <div class="yoy-val" style="color:${color}">${Gs(acIng26)}</div>
-        <div class="yoy-delta" style="color:#888">Ene–${MESES[idx]}</div>
-      </div>
-      <div class="yoy-item">
-        <div class="yoy-lbl">Ingresos mismo período 2025</div>
-        <div class="yoy-val" style="color:#888">${Gs(acIng25)}</div>
-        <div class="yoy-delta" style="color:#888">Ene–${MESES[idx]}</div>
-      </div>
-      <div class="yoy-item">
-        <div class="yoy-lbl">Variación año a año</div>
-        <div class="yoy-val ${yoyIng>=0?'pos':'neg'}">${yoyIng!==null?(yoyIng>=0?'+':'')+yoyIng+'%':'—'}</div>
-        <div class="yoy-delta" style="color:#888">${yoyIng>=0?'▲ Creció vs 2025':'▼ Cayó vs 2025'}</div>
-      </div>
-    </div>`;
-
-  document.getElementById('secc'+key.charAt(0).toUpperCase()+key.slice(1).toUpperCase()[0]+key.slice(1)).innerHTML = html;
-  // Correct ID mapping
+    <div class="yoy-item">
+      <div class="yoy-lbl">Mismo período 2025</div>
+      <div class="yoy-val" style="color:#aaa">${acI25 > 0 ? Gs(acI25) : '—'}</div>
+      <div class="yoy-sub">Ene – ${MESES[idx]}</div>
+    </div>
+    <div class="yoy-item">
+      <div class="yoy-lbl">Variación año a año</div>
+      <div class="yoy-val ${yoy>=0?'green':'red'}">${yoy!==null?(yoy>=0?'+':'')+yoy+'%':'—'}</div>
+      <div class="yoy-sub">${yoy>=0?'▲ Creció vs 2025':'▼ Cayó vs 2025'}</div>
+    </div>
+  </div>
+</div>`;
 }
 
-// ═══════════════════════════════════════════════════════
-//  GLOBAL STRIP
-// ═══════════════════════════════════════════════════════
+// ─────────────────────────────────────────────────────────
+// GLOBAL STRIP
+// ─────────────────────────────────────────────────────────
 function renderGlobal() {
-  const totIng = Object.values(COS).reduce((s,c)=>s+c.ing26.reduce((a,b)=>a+b,0),0);
-  const totEgr = Object.values(COS).reduce((s,c)=>s+c.egr26.reduce((a,b)=>a+b,0),0);
-  const totRes = totIng - totEgr;
-  const totMrg = totIng ? Math.round(totRes/totIng*100) : 0;
-
-  const totIng25 = Object.values(COS).reduce((s,c)=>{
-    const idx = li(c.ing26);
-    return s + c.ing25.slice(0,idx+1).reduce((a,b)=>a+b,0);
+  const all   = Object.values(EMP);
+  const totI  = all.reduce((s,e)=>s+e.ing.reduce((a,b)=>a+b,0),0);
+  const totE  = all.reduce((s,e)=>s+e.egr.reduce((a,b)=>a+b,0),0);
+  const totR  = all.reduce((s,e)=>s+e.res.reduce((a,b)=>a+b,0),0);
+  const totM  = totI ? Math.round(totR/totI*100) : 0;
+  const totI25= all.reduce((s,e)=>{
+    const n = li(e.ing)+1;
+    return s + e.ing25.slice(0,n).reduce((a,b)=>a+b,0);
   },0);
-  const yoy = totIng25 ? Math.round((totIng-totIng25)/totIng25*100) : null;
+  const yoy   = totI25 ? Math.round((totI-totI25)/totI25*100) : null;
 
-  document.getElementById('globalStrip').innerHTML = `
-    <div class="gs">
-      <div class="gs-lbl">Total Ingresos</div>
-      <div class="gs-val neu">${Gs(totIng)}</div>
-      <div class="gs-sub">Consolidado 2026</div>
-    </div>
-    <div class="gs">
-      <div class="gs-lbl">Total Egresos</div>
-      <div class="gs-val" style="color:#c0392b">${Gs(totEgr)}</div>
-      <div class="gs-sub">Consolidado 2026</div>
-    </div>
-    <div class="gs">
-      <div class="gs-lbl">Resultado Neto</div>
-      <div class="gs-val ${totRes>=0?'pos':'neg'}">${totRes>=0?'+':''}${Gs(totRes)}</div>
-      <div class="gs-sub">Ingresos − Egresos</div>
-    </div>
-    <div class="gs">
-      <div class="gs-lbl">Margen Neto</div>
-      <div class="gs-val ${totMrg>10?'pos':totMrg>0?'neu':'neg'}">${totMrg}%</div>
-      <div class="gs-sub">Resultado / Ingresos</div>
-    </div>
-    <div class="gs">
-      <div class="gs-lbl">Ingresos vs 2025</div>
-      <div class="gs-val ${yoy>=0?'pos':'neg'}">${yoy!==null?(yoy>=0?'+':'')+yoy+'%':'—'}</div>
-      <div class="gs-sub">Año a año (mismo período)</div>
-    </div>`;
+  document.getElementById('globalRow').innerHTML = `
+    <div class="g"><div class="g-lbl">Total Ingresos</div><div class="g-val dark">${Gs(totI)}</div><div class="g-sub">Consolidado 2026</div></div>
+    <div class="g"><div class="g-lbl">Total Egresos</div><div class="g-val red">${Gs(totE)}</div><div class="g-sub">Consolidado 2026</div></div>
+    <div class="g"><div class="g-lbl">Resultado Neto</div><div class="g-val ${totR>=0?'green':'red'}">${GsS(totR)}</div><div class="g-sub">Ingresos − Egresos</div></div>
+    <div class="g"><div class="g-lbl">Margen Neto</div><div class="g-val ${totM>10?'green':totM>0?'orange':'red'}">${totM>0?'+':''}${totM}%</div><div class="g-sub">Resultado / Ingresos</div></div>
+    <div class="g"><div class="g-lbl">Ingresos vs 2025</div><div class="g-val ${yoy>=0?'green':'red'}">${yoy!==null?(yoy>=0?'+':'')+yoy+'%':'—'}</div><div class="g-sub">Año a año</div></div>`;
 }
 
-// ═══════════════════════════════════════════════════════
-//  RENDER ALL
-// ═══════════════════════════════════════════════════════
 function renderAll() {
   renderGlobal();
-  renderEmpresa('DG',   COS.dg);
-  renderEmpresa('VG',   COS.vg);
-  renderEmpresa('AIMA', COS.aima);
-}
-
-function renderEmpresa(key, co) {
-  const { nombre, color, periodo, ing26, egr26, ing25 } = co;
-  const idx = li(ing26);
-  if (idx < 0) { document.getElementById('secc'+key).innerHTML = '<p style="padding:20px;color:#aaa">Sin datos</p>'; return; }
-
-  const ingM = ing26[idx], egrM = egr26[idx], resM = ingM - egrM;
-  const mrgM = ingM ? Math.round(resM/ingM*100) : null;
-  const sem  = semColor(resM, ingM);
-
-  const idxP = idx > 0 ? idx-1 : -1;
-  const ingP = idxP>=0 ? ing26[idxP] : 0;
-  const egrP = idxP>=0 ? egr26[idxP] : 0;
-  const resP = ingP - egrP;
-  const momIng = ingP ? Math.round((ingM-ingP)/ingP*100) : null;
-  const momEgr = egrP ? Math.round((egrM-egrP)/egrP*100) : null;
-
-  const acIng26 = ing26.reduce((a,b)=>a+b,0);
-  const acEgr26 = egr26.reduce((a,b)=>a+b,0);
-  const acRes26 = acIng26 - acEgr26;
-  const acMrg26 = acIng26 ? Math.round(acRes26/acIng26*100) : null;
-
-  const acIng25 = ing25.slice(0,idx+1).reduce((a,b)=>a+b,0);
-  const yoyIng  = acIng25 ? Math.round((acIng26-acIng25)/acIng25*100) : null;
-
-  const badge = (p, inv=false) => {
-    if (p===null) return '';
-    const cls = p>0?(inv?'dn':'up'):p<0?(inv?'up':'dn'):'eq';
-    return `<span class="delta ${cls}">${p>0?'▲':'▼'} ${Math.abs(p)}% MoM</span>`;
-  };
-
-  const meses = MESES.slice(0, idx+1);
-  const thRow = `<tr><th>Concepto</th>${meses.map(m=>`<th>${m}</th>`).join('')}<th>Acumulado</th></tr>`;
-
-  const mkRow = (lbl, data, type) => {
-    const cells = data.slice(0,idx+1).map((v,i)=>{
-      if (!v && v!==0) return '<td>—</td>';
-      if (type==='mrg') return `<td class="${v>15?'c-pos':v>0?'c-neu':'c-neg'}">${v>0?'+':''}${v}%</td>`;
-      const cl = type==='ing'?'c-pos':type==='egr'?'c-neg':v>=0?'c-pos':'c-neg';
-      return `<td class="${cl}">${type!=='egr'&&v>0?'+':''}${Gs(v)}</td>`;
-    });
-    const tot = data.slice(0,idx+1).reduce((a,b)=>a+(b||0),0);
-    const tcl = type==='mrg'?(tot>15?'c-pos':tot>0?'c-neu':'c-neg'):(type==='ing'?'c-pos':type==='egr'?'c-neg':tot>=0?'c-pos':'c-neg');
-    const tv  = type==='mrg'?`${tot>0?'+':''}${tot}%`:`${type!=='egr'&&tot>0?'+':''}${Gs(tot)}`;
-    return `<tr class="${type}"><td>${lbl}</td>${cells.join('')}<td class="${tcl}" style="font-weight:800">${tv}</td></tr>`;
-  };
-
-  const resData = ing26.map((v,i)=>v?(v-egr26[i]):0);
-  const mrgData = ing26.map((v,i)=>v?Math.round((v-egr26[i])/v*100):0);
-
-  document.getElementById('secc'+key).innerHTML = `
-    <div class="co-hdr">
-      <span class="co-title">${nombre}</span>
-      <div class="co-hdr-right">
-        <span class="co-periodo">${periodo}</span>
-        <span class="sem ${sem}" title="Margen: ${mrgM!==null?mrgM+'%':'—'}"></span>
-      </div>
-    </div>
-    <div class="mkpi-row">
-      <div class="mkpi">
-        <div class="mkpi-lbl">Ingresos — ${MESES[idx]}</div>
-        <div class="mkpi-val neu">${Gs(ingM)}</div>
-        <div class="mkpi-sub">${badge(momIng)}<span class="badge-lbl">vs ${idxP>=0?MESES[idxP]:'—'}</span></div>
-      </div>
-      <div class="mkpi">
-        <div class="mkpi-lbl">Egresos — ${MESES[idx]}</div>
-        <div class="mkpi-val" style="color:#c0392b">${Gs(egrM)}</div>
-        <div class="mkpi-sub">${badge(momEgr,true)}<span class="badge-lbl">vs ${idxP>=0?MESES[idxP]:'—'}</span></div>
-      </div>
-      <div class="mkpi">
-        <div class="mkpi-lbl">Resultado — ${MESES[idx]}</div>
-        <div class="mkpi-val ${resM>=0?'pos':'neg'}">${resM>=0?'+':''}${Gs(resM)}</div>
-        <div class="mkpi-sub"><span class="delta ${resM>resP?'up':'dn'}">${resM>resP?'▲ Mejor':'▼ Peor'} que ${idxP>=0?MESES[idxP]:'—'}</span></div>
-      </div>
-      <div class="mkpi">
-        <div class="mkpi-lbl">Margen — ${MESES[idx]}</div>
-        <div class="mkpi-val ${mrgM>15?'pos':mrgM>0?'neu':'neg'}">${mrgM!==null?mrgM+'%':'—'}</div>
-        <div class="mkpi-sub"><span class="badge-lbl">Acum. 2026: <strong>${acMrg26!==null?acMrg26+'%':'—'}</strong> &nbsp;|&nbsp; ${acRes26>=0?'+':''}${Gs(acRes26)}</span></div>
-      </div>
-    </div>
-    <div class="pyl-wrap">
-      <table class="pyl-table">
-        <thead>${thRow}</thead>
-        <tbody>
-          ${mkRow('📈 Ingresos',  ing26,   'ing')}
-          ${mkRow('📉 Egresos',   egr26,   'egr')}
-          ${mkRow('💰 Resultado', resData, 'res')}
-          ${mkRow('📊 Margen %',  mrgData, 'mrg')}
-        </tbody>
-      </table>
-    </div>
-    <div class="chart-row">
-      <div class="chart-title">Ingresos vs Egresos por mes (Gs.)</div>
-      ${miniChart(ing26, egr26, color)}
-    </div>
-    <div class="yoy-row">
-      <div class="yoy-item">
-        <div class="yoy-lbl">Ingresos acum. 2026</div>
-        <div class="yoy-val" style="color:${color}">${Gs(acIng26)}</div>
-        <div class="yoy-delta" style="color:#999">Ene–${MESES[idx]}</div>
-      </div>
-      <div class="yoy-item">
-        <div class="yoy-lbl">Mismo período 2025</div>
-        <div class="yoy-val" style="color:#999">${acIng25>0?Gs(acIng25):'No disponible'}</div>
-        <div class="yoy-delta" style="color:#999">Ene–${MESES[idx]}</div>
-      </div>
-      <div class="yoy-item">
-        <div class="yoy-lbl">Variación año a año</div>
-        <div class="yoy-val ${yoyIng>=0?'pos':'neg'}">${yoyIng!==null?(yoyIng>=0?'+':'')+yoyIng+'%':'—'}</div>
-        <div class="yoy-delta" style="color:${yoyIng>=0?'#1e8449':'#c0392b'}">${yoyIng>=0?'▲ Creció vs 2025':'▼ Cayó vs 2025'}</div>
-      </div>
-    </div>`;
+  Object.entries(EMP).forEach(([k,e]) => renderCard(k,e));
 }
 
 renderAll();
 
-// ═══════════════════════════════════════════════════════
-//  LIVE REFRESH (Resumen sheet — ingresos públicos)
-// ═══════════════════════════════════════════════════════
+// ─────────────────────────────────────────────────────────
+// LIVE — actualiza ingresos 2025/2026 desde Resumen sheet
+// ─────────────────────────────────────────────────────────
 const SHEET = '1Jkq3un1AAmthg6PHxht5c8EfFK9oU9iyKgu8XSiLy-Y';
-
-function gviz(sheet) {
+function gviz(s){
   return new Promise((res,rej)=>{
-    const cb='_gv_'+Date.now();
-    const t=setTimeout(()=>{delete window[cb];rej('timeout');},8000);
+    const cb='_g'+Date.now();const t=setTimeout(()=>{delete window[cb];rej();},8000);
     window[cb]=d=>{clearTimeout(t);delete window[cb];res((d.table.rows||[]).map(r=>r.c.map(c=>c?c.v:null)));};
-    const s=document.createElement('script');
-    s.src=`https://docs.google.com/spreadsheets/d/${SHEET}/gviz/tq?tqx=responseHandler:${cb}&sheet=${encodeURIComponent(sheet)}`;
-    s.onerror=()=>{clearTimeout(t);delete window[cb];rej('error');};
-    document.head.appendChild(s);
+    const el=document.createElement('script');
+    el.src=`https://docs.google.com/spreadsheets/d/${SHEET}/gviz/tq?tqx=responseHandler:${cb}&sheet=${encodeURIComponent(s)}`;
+    el.onerror=()=>{clearTimeout(t);delete window[cb];rej();};
+    document.head.appendChild(el);
   });
 }
 
-async function actualizarEnVivo() {
-  const btn=document.querySelector('.btn-refresh');
-  btn.textContent='⏳'; btn.disabled=true;
-  try {
+async function actualizar(){
+  const btn=document.querySelector('.btn');
+  btn.textContent='⏳';btn.disabled=true;
+  try{
     const rows=await gviz('Resumen');
     let modo='';
     rows.forEach(row=>{
       const l0=String(row[0]||'').trim().toUpperCase();
       const l1=String(row[1]||'').trim().toLowerCase();
       if(l0==='REAL 2026')modo='r26';
-      if(l0.includes('OBJETIVO'))modo='obj';
       if(l0==='2025')modo='r25';
-      if(l0.startsWith('VS PRES'))modo='';
-      const v=row.slice(2,8).map(x=>x!=null?Number(x):0);
+      if(l0.includes('OBJETIVO')||l0.startsWith('VS PRES'))modo='';
+      const v=row.slice(2,7).map(x=>x!=null?Number(x):0);
       if(modo==='r26'){
-        if(l1.includes('doble'))COS.dg.ing26=v;
-        if(l1.includes('vg'))COS.vg.ing26=v;
-        if(l1.includes('aim'))COS.aima.ing26=v;
+        // Solo actualiza ingresos; egresos y resultado quedan del P&L
+        if(l1.includes('doble'))EMP.DG.ing=v;
+        if(l1.includes('vg'))EMP.VG.ing=v;
+        if(l1.includes('aim'))EMP.AIMA.ing=v;
       }
       if(modo==='r25'){
-        if(l1.includes('doble'))COS.dg.ing25=v;
-        if(l1.includes('vg'))COS.vg.ing25=v;
-        if(l1.includes('aim'))COS.aima.ing25=v;
+        if(l1.includes('doble'))EMP.DG.ing25=v;
+        if(l1.includes('vg'))EMP.VG.ing25=v;
+        if(l1.includes('aim'))EMP.AIMA.ing25=v;
       }
     });
     renderAll();
-    document.getElementById('ts').textContent='actualizado '+new Date().toLocaleString('es-PY',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+    document.getElementById('ts').textContent='act. '+new Date().toLocaleString('es-PY',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
     btn.textContent='✅';
-  } catch(e){ btn.textContent='⚠️'; }
+  }catch{btn.textContent='⚠️';}
   setTimeout(()=>{btn.textContent='↻ Actualizar';btn.disabled=false;},3000);
 }
 </script>
