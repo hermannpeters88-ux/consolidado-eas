@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consolidado VG EAS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f6f9;color:#1c2833}
+.top{background:linear-gradient(135deg,#701082,#5a0c68);color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.top h1{font-size:18px;font-weight:700}.top p{font-size:12px;opacity:.75;margin-top:3px}
+.btn{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 15px;border-radius:7px;cursor:pointer;font-size:13px;font-weight:500}
+.btn:hover{background:rgba(255,255,255,.28)}
+.wrap{max-width:1040px;margin:0 auto;padding:22px 16px 50px}
+.sec{font-size:10px;font-weight:700;color:#701082;text-transform:uppercase;letter-spacing:1px;margin:24px 0 10px}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpi{background:#fff;border-radius:10px;padding:16px 17px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.kl{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.5px}
+.kv{font-size:22px;font-weight:800;margin-top:6px;line-height:1.1}
+.ks{font-size:11px;color:#aaa;margin-top:4px}
+.co-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.co{background:#fff;border-radius:10px;padding:18px 19px;box-shadow:0 1px 4px rgba(0,0,0,.07);border-top:4px solid #ccc}
+.co.dg{border-color:#2471a3}.co.vg{border-color:#e67e22}.co.aima{border-color:#701082}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cn{font-size:14px;font-weight:700}
+.dot{width:15px;height:15px;border-radius:50%}
+.dot.v{background:#27ae60;box-shadow:0 0 5px rgba(39,174,96,.5)}
+.dot.a{background:#e67e22;box-shadow:0 0 5px rgba(230,126,34,.5)}
+.dot.r{background:#e74c3c;box-shadow:0 0 5px rgba(231,76,60,.5)}
+.cm{font-size:24px;font-weight:800;line-height:1}.co-sub{font-size:11px;color:#aaa;margin-top:3px}
+.pb{background:#f0e6f4;border-radius:4px;height:6px;margin:11px 0 4px;overflow:hidden}
+.pbf{height:100%;border-radius:4px;transition:width .5s ease}
+.pbf.v{background:#27ae60}.pbf.a{background:#e67e22}.pbf.r{background:#e74c3c}
+.pp{font-size:12px;font-weight:700}.pp.v{color:#27ae60}.pp.a{color:#e67e22}.pp.r{color:#e74c3c}
+.cf{margin-top:12px;padding-top:10px;border-top:1px solid #ecdff4;display:flex;justify-content:space-between;font-size:12px}
+.cf .lb{color:#aaa}.cf .vl{font-weight:700}
+.chart-box{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.07);overflow:auto}
+.chart-svg{width:100%;display:block}
+.tbl-box{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.07);overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:#f8f2fc;color:#701082;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:10px 14px;text-align:right;border-bottom:1px solid #ecdff4}
+thead th:first-child{text-align:left}
+tbody td{padding:10px 14px;text-align:right;border-bottom:1px solid #faf5fc;font-size:12.5px}
+tbody td:first-child{text-align:left;font-weight:600}
+tbody tr:last-child td{border-bottom:none}
+tbody tr.tot td{background:#f8f2fc;font-weight:800;color:#701082}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700;margin-left:6px}
+.badge.v{background:#e8f8f0;color:#1e8449}.badge.a{background:#fef6e9;color:#d68910}.badge.r{background:#fdeeee;color:#c0392b}
+@media(max-width:560px){.top{flex-direction:column;gap:10px;text-align:center}.kpi-row,.co-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div>
+    <h1>Consolidado VG EAS</h1>
+    <p>Doble G &nbsp;·&nbsp; VG Asociados &nbsp;·&nbsp; AIMA &nbsp;—&nbsp; <span id="ts">junio 2026</span></p>
+  </div>
+  <button class="btn" onclick="actualizarEnVivo()">↻ Actualizar en vivo</button>
+</div>
+
+<div class="wrap">
+
+  <div class="sec">Resumen del mes — Junio 2026</div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kl">Total facturado (mes)</div><div class="kv" id="k1">Gs. 71,2M</div><div class="ks">Junio 2026</div></div>
+    <div class="kpi"><div class="kl">Acumulado 2026</div><div class="kv" id="k2">Gs. 431,2M</div><div class="ks">Ene → Jun</div></div>
+    <div class="kpi"><div class="kl">Mejor empresa</div><div class="kv" id="k3">AIMA</div><div class="ks">101% del objetivo</div></div>
+  </div>
+
+  <div class="sec">Empresas — Real vs Objetivo 2026</div>
+  <div class="co-row">
+    <div class="co dg" id="cDG"></div>
+    <div class="co vg" id="cVG"></div>
+    <div class="co aima" id="cAIMA"></div>
+  </div>
+
+  <div class="sec">Evolución mensual 2026 (millones Gs.)</div>
+  <div class="chart-box" id="chartBox"></div>
+
+  <div class="sec">Arquitectos AIMA 2026</div>
+  <div class="tbl-box">
+    <table>
+      <thead><tr><th>Arquitecto</th><th>Ene</th><th>Feb</th><th>Mar</th><th>Abr</th><th>May</th><th>Jun</th><th>Total</th></tr></thead>
+      <tbody id="archBody"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+// ── DATOS ────────────────────────────────────────────────
+const D = {
+  meses: ['Ene','Feb','Mar','Abr','May','Jun'],
+  dg:   [26000000,28200000,26000000,23800000,22700000,0],
+  vg:   [19570000,18695000,27555000,30670000,15255000,22600000],
+  aima: [24600000,29000000,30400000,29000000,30900000,26300000],
+  oDG:  [35000000,35000000,35000000,35000000,35000000,35000000],
+  oVG:  [14117500,24000000,24000000,24000000,24000000,24000000],
+  oAIM: [22800000,26000000,26000000,26000000,26000000,26000000],
+  arch: [
+    {n:'Diego',   m:[3000000,5700000,5700000,8400000,8400000,6300000],t:37500000},
+    {n:'Ivannah', m:[0,2700000,2700000,2400000,2400000,2400000],      t:12600000},
+    {n:'Miguel',  m:[0,0,1900000,2500000,2500000,1900000],            t:8800000},
+    {n:'Lourdes', m:[0,0,0,0,2100000,3200000],                        t:5300000}
+  ]
+};
+
+const M  = v => v > 0 ? 'Gs. '+(v/1e6).toFixed(1).replace('.',',')+'M' : '—';
+const li = a => { let i=0; a.forEach((v,k)=>{if(v>0)i=k;}); return i; };
+const sc = (r,o) => !o?'a': r/o>=.95?'v': r/o>=.75?'a':'r';
+const scL = c => ({v:'verde',a:'amarillo',r:'rojo'})[c];
+
+function card(id, nombre, real, obj) {
+  const idx = li(real);
+  const r=real[idx]||0, o=obj[idx]||0, c=sc(r,o);
+  const pct = o?Math.min(Math.round(r/o*100),100):0;
+  const pctN = o?Math.round(r/o*100):0;
+  const acum = real.reduce((a,b)=>a+b,0);
+  const oAcum = obj.reduce((a,b)=>a+b,0);
+  const pAcum = oAcum?Math.round(acum/oAcum*100):0;
+  const cL = scL(c);
+  document.getElementById(id).innerHTML =
+    `<div class="ch"><span class="cn">${nombre}</span><span class="dot ${c}" title="${pctN}% del objetivo"></span></div>
+     <div class="cm">${M(r)}</div>
+     <div class="co-sub">Objetivo ${D.meses[idx]}: ${M(o)}</div>
+     <div class="pb"><div class="pbf ${c}" style="width:${pct}%"></div></div>
+     <div class="pp ${c}">${pctN}% del objetivo <span class="badge ${c}">${cL.toUpperCase()}</span></div>
+     <div class="cf"><span class="lb">Acumulado 2026</span><span class="vl">${M(acum)} <span style="font-weight:400;color:#aaa;font-size:10px">(${pAcum}%)</span></span></div>`;
+}
+
+function chart(dg, vg, aima, meses) {
+  const n = meses.length;
+  const vals = [...dg,...vg,...aima].filter(v=>v>0);
+  const maxV = vals.length ? Math.max(...vals) : 1;
+  const BW=22, GAP=3, GG=14, PAD_L=54, PAD_B=28, H=190;
+  const W = PAD_L + n*(3*BW+2*GAP+GG) + 10;
+  const scale = v => (H - PAD_B) * (v / maxV);
+
+  let svg = `<svg viewBox="0 0 ${W} ${H+4}" class="chart-svg" style="min-width:${Math.max(W,300)}px">`;
+  // grid lines
+  for (let i=1; i<=4; i++) {
+    const y = (H-PAD_B)*(1-i/4);
+    const lab = M(maxV*i/4);
+    svg += `<line x1="${PAD_L-4}" y1="${y}" x2="${W-4}" y2="${y}" stroke="#f0eaf6" stroke-width="1"/>`;
+    svg += `<text x="${PAD_L-6}" y="${y+4}" text-anchor="end" font-size="9" fill="#bbb">${lab}</text>`;
+  }
+  // bars
+  const colors = ['#2471a3','#e67e22','#701082'];
+  const data = [dg, vg, aima];
+  const labels = ['Doble G','VG Asoc.','AIMA'];
+  for (let m=0; m<n; m++) {
+    const gx = PAD_L + m*(3*BW+2*GAP+GG);
+    for (let d=0; d<3; d++) {
+      const v = data[d][m]||0;
+      const h = scale(v);
+      const x = gx + d*(BW+GAP);
+      const y = H-PAD_B-h;
+      svg += `<rect x="${x}" y="${y}" width="${BW}" height="${h}" rx="3" fill="${colors[d]}" opacity="0.85"/>`;
+      if (v>0) svg += `<text x="${x+BW/2}" y="${y-3}" text-anchor="middle" font-size="8" fill="#666">${(v/1e6).toFixed(1)}</text>`;
+    }
+    const lx = gx + (3*BW+2*GAP)/2;
+    svg += `<text x="${lx}" y="${H-5}" text-anchor="middle" font-size="10" fill="#888">${meses[m]}</text>`;
+  }
+  // legend
+  const ly = H+18;
+  for (let i=0; i<3; i++) {
+    const lx = PAD_L + i*100;
+    svg += `<rect x="${lx}" y="${ly-8}" width="10" height="10" rx="2" fill="${colors[i]}"/>`;
+    svg += `<text x="${lx+13}" y="${ly}" font-size="10" fill="#666">${labels[i]}</text>`;
+  }
+  svg += `</svg>`;
+  document.getElementById('chartBox').innerHTML = svg;
+}
+
+function archTable() {
+  const tb = document.getElementById('archBody');
+  tb.innerHTML = '';
+  const tots = Array(6).fill(0);
+  D.arch.forEach(a => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${a.n}</td>`
+      + a.m.map((v,i)=>{tots[i]+=v;return`<td>${v>0?M(v):'—'}</td>`;}).join('')
+      + `<td style="font-weight:800">${M(a.t)}</td>`;
+    tb.appendChild(tr);
+  });
+  const tr = document.createElement('tr');
+  tr.className='tot';
+  tr.innerHTML = `<td>Total</td>`+tots.map(v=>`<td>${M(v)}</td>`).join('')+`<td>${M(D.arch.reduce((s,a)=>s+a.t,0))}</td>`;
+  tb.appendChild(tr);
+}
+
+function render(d) {
+  const mesIdx = Math.max(li(d.dg),li(d.vg),li(d.aima));
+  const totMes = (d.dg[mesIdx]||0)+(d.vg[mesIdx]||0)+(d.aima[mesIdx]||0);
+  const totAcum = [...d.dg,...d.vg,...d.aima].reduce((a,b)=>a+b,0);
+  const cos=[{n:'Doble G',r:d.dg[mesIdx]||0,o:d.oDG[mesIdx]||0},{n:'VG Asociados',r:d.vg[mesIdx]||0,o:d.oVG[mesIdx]||0},{n:'AIMA',r:d.aima[mesIdx]||0,o:d.oAIM[mesIdx]||0}];
+  const mejor=cos.reduce((a,b)=>(b.o?b.r/b.o:0)>(a.o?a.r/a.o:0)?b:a);
+  document.getElementById('k1').textContent=M(totMes);
+  document.getElementById('k2').textContent=M(totAcum);
+  document.getElementById('k3').textContent=mejor.n;
+  card('cDG','Doble G',d.dg,d.oDG);
+  card('cVG','VG Asociados',d.vg,d.oVG);
+  card('cAIMA','AIMA',d.aima,d.oAIM);
+  chart(d.dg,d.vg,d.aima,d.meses);
+  archTable();
+}
+
+// Render inmediato con datos guardados
+render(D);
+
+// ── ACTUALIZACIÓN EN VIVO ────────────────────────────────
+const SHEET = '1Jkq3un1AAmthg6PHxht5c8EfFK9oU9iyKgu8XSiLy-Y';
+function gviz(sheet) {
+  return new Promise((res,rej)=>{
+    const cb='_gv_'+Date.now();
+    const t=setTimeout(()=>{delete window[cb];rej('timeout');},8000);
+    window[cb]=d=>{
+      clearTimeout(t);delete window[cb];
+      res((d.table.rows||[]).map(r=>r.c.map(c=>c?c.v:null)));
+    };
+    const s=document.createElement('script');
+    s.src=`https://docs.google.com/spreadsheets/d/${SHEET}/gviz/tq?tqx=responseHandler:${cb}&sheet=${encodeURIComponent(sheet)}`;
+    s.onerror=()=>{clearTimeout(t);delete window[cb];rej('error');};
+    document.head.appendChild(s);
+  });
+}
+
+async function actualizarEnVivo() {
+  const btn = document.querySelector('.btn');
+  btn.textContent = '⏳ Actualizando...';
+  btn.disabled = true;
+  try {
+    const rows = await gviz('Resumen');
+    let dg=null,vg=null,aim=null,oDG=null,oVG=null,oAIM=null,modo='';
+    rows.forEach(row=>{
+      const l0=String(row[0]||'').trim().toUpperCase();
+      const l1=String(row[1]||'').trim().toLowerCase();
+      if(l0==='REAL 2026') modo='real';
+      if(l0.includes('OBJETIVO')) modo='obj';
+      if(l0.startsWith('VS PRES')) modo='';
+      const v=row.slice(2,8).map(v=>v!=null?Number(v):0);
+      if(modo==='real'){if(l1.includes('doble')&&!dg)dg=v;if(l1.includes('vg')&&!vg)vg=v;if(l1.includes('aim')&&!aim)aim=v;}
+      if(modo==='obj'){if(l1.includes('doble')&&!oDG)oDG=v;if(l1.includes('vg')&&!oVG)oVG=v;if(l1.includes('aim')&&!oAIM)oAIM=v;}
+    });
+    if(dg||vg||aim){
+      D.dg=dg||D.dg; D.vg=vg||D.vg; D.aima=aim||D.aima;
+      D.oDG=oDG||D.oDG; D.oVG=oVG||D.oVG; D.oAIM=oAIM||D.oAIM;
+      render(D);
+      document.getElementById('ts').textContent='actualizado '+new Date().toLocaleString('es-PY',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+      btn.textContent='✅ Actualizado';
+    } else {
+      btn.textContent='⚠️ Sin cambios';
+    }
+  } catch(e) {
+    btn.textContent='⚠️ Sin conexión';
+  }
+  setTimeout(()=>{btn.textContent='↻ Actualizar en vivo';btn.disabled=false;},3000);
+}
+</script>
+</body>
+</html>
